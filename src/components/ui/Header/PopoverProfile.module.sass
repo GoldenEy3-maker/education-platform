@@ -1,0 +1,74 @@
+
+.profile
+  display: grid
+  grid-template-columns: [avatar-start] 3rem [avatar-end] 1.5rem [content-start] 1fr [content-end]
+  grid-template-rows: auto auto
+
+  &Email
+    grid-column: content
+    grid-row: 2
+
+    white-space: nowrap
+    text-overflow: ellipsis
+    overflow: hidden
+
+    color: hsl(var(--on-surface-variant-hsl))
+
+  &Img
+    grid-column: avatar
+    grid-row: span 2
+
+    display: grid
+    place-items: start
+
+    span
+      position: relative
+      font-size: 1.5rem
+
+      width: 60px
+      height: 60px
+
+      display: grid
+      place-items: center
+
+      overflow: hidden
+      border-radius: var(--full-shape)
+      background-color: hsl(var(--placeholder-hsl))
+
+.credentials
+  grid-column: content
+
+  display: flex
+  align-items: flex-end
+
+  &Role
+    color: hsl(var(--on-surface-variant-hsl))
+
+  strong
+    white-space: nowrap
+    text-overflow: ellipsis
+
+.nav
+  margin-top: 0.5rem
+
+  hr
+    background-color: hsl(var(--outline-variant-hsl))
+    height: 1px
+    margin-block: 0.3rem
+
+  &Link
+    width: 100%
+    gap: 1rem
+    border-radius: var(--small-shape)
+    padding-inline: 1.1rem
+
+    svg
+      font-size: 1.3rem
+
+.themeController
+  label
+    padding-inline: 1.1rem !important
+    gap: 1rem !important
+
+    svg
+      font-size: 1.3rem

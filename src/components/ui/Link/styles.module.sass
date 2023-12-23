@@ -1,0 +1,59 @@
+.link
+  position: relative
+  overflow: hidden
+
+  display: flex
+  align-items: center
+  gap: 0.3rem
+
+  padding: 0.7rem 1.5rem
+
+  border-radius: var(--full-shape)
+  color: hsl(var(--primary-hsl))
+
+  &._onPrimaryClr
+    color: hsl(var(--on-primary-hsl))
+
+  &._defaultClr
+    color: hsl(var(--on-surface-hsl))
+
+  &._sm
+    font-size: var(--body-m-fs)
+    padding: 0.5rem 1rem
+
+  &._asIcon
+    padding: 0.7rem
+
+  &._elevated
+    background-color: hsl(var(--primary-container-low-hsl))
+    box-shadow: 0 0.1rem 0.1rem hsla(var(--primary-bxs-hsla))
+
+  &._filled
+    --ripple-hsl: var(--surface-hsl)
+
+    background-color: hsl(var(--primary-hsl))
+    color: hsl(var(--on-primary-hsl))
+
+  &:focus-visible,
+  &[data-auto-focus]
+    outline: 2px solid hsl(var(--focus-outline-clr-hsl))
+    outline-offset: 2px
+
+  @media (hover: hover) and (pointer: fine)
+    &:hover
+      text-decoration: none
+
+      background-color: hsl(var(--primary-container-hsl))
+
+      &._onPrimaryClr
+        background-color: hsl(var(--surface-hsl))
+        color: hsl(var(--primary-hsl))
+
+      &._elevated
+        background-color: hsl(var(--primary-container-hsl))
+
+      &._filled
+        background-color: hsl(var(--primary-low-hsl))
+
+      &._defaultClr
+        color: hsl(var(--primary-hsl))

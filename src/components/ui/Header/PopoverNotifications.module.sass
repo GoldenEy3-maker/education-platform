@@ -1,0 +1,107 @@
+.list
+  list-style: none
+  display: grid
+  gap: 0.3rem
+
+.item
+  position: relative
+  overflow: hidden
+  color: hsl(var(--on-surface-hsl))
+
+  padding: 0.5rem
+
+  border-radius: var(--medium-shape)
+
+  display: grid
+  grid-template-columns: auto 1fr
+  grid-template-rows: auto auto
+  column-gap: 1rem
+
+  ._loadingSkeleton &
+    grid-template-columns: auto 300px
+
+  &._notReaded
+    grid-template-columns: auto 1fr auto
+    // background-color: hsl(var(--primary-container-lowest-hsl))
+
+    &::after
+      content: ""
+      grid-column: 3
+      grid-row: span 2
+      display: block
+      margin-block: auto
+      width: 0.5rem
+      height: 0.5rem
+      background-color: hsl(var(--primary-hsl))
+      border-radius: 50%
+
+.avatar
+  grid-column: 1 / 2
+  grid-row: span 2
+
+  position: relative
+  overflow: hidden
+
+  display: grid
+  place-items: center
+
+  width: 50px
+  height: 50px
+
+  font-size: var(--title-l-fs)
+
+  background-color: hsl(var(--placeholder-hsl))
+  border-radius: var(--full-shape)
+
+.text
+  grid-column: 2
+
+  white-space: nowrap
+  text-overflow: ellipsis
+  overflow: hidden
+
+.extraInfo
+  grid-column: 2
+  grid-row: 2
+
+  display: flex
+  align-items: center
+
+  white-space: nowrap
+  text-overflow: ellipsis
+  overflow: hidden
+
+  color: hsl(var(--on-surface-variant-hsl))
+
+  span
+    white-space: nowrap
+    text-overflow: ellipsis
+    overflow: hidden
+
+  i
+    flex-shrink: 0
+    width: 0.3rem
+    height: 0.3rem
+    background-color: hsl(var(--on-surface-variant-hsl))
+    border-radius: 50%
+    margin-inline: 0.5rem
+
+.empty
+  display: grid
+  place-items: center
+
+  padding: 2rem
+
+  span
+    display: flex
+    font-size: 4rem
+    color: hsl(var(--primary-lowest-hsl))
+    margin-bottom: 1rem
+
+  p
+    text-align: center
+
+@media (hover: hover) and (pointer: fine)
+  .list:not(._loadingSkeleton) .item:hover
+    background-color: hsl(var(--primary-container-low-hsl))
+    text-decoration: none

@@ -1,0 +1,49 @@
+services:
+  - type: redis
+    name: education-platform-redis
+    ipAllowList:
+      - source: 0.0.0.0/0
+        description: everywhere
+    region: frankfurt
+    plan: free
+
+  - type: web
+    name: education-platform-hosting
+    runtime: node
+    env: node
+    region: frankfurt
+    plan: free
+    buildCommand: NODE_ENV=development yarn && yarn build
+    startCommand: yarn start
+    healthCheckPath: /api/trpc/healthCheck
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: education-platform-db
+          property: connectionString
+      - key: NEXT_PUBLIC_APP_HOSTNAME
+        fromService:
+          type: web
+          name: education-platform-hosting
+          envVarKey: RENDER_EXTERNAL_HOSTNAME
+      - key: NEXT_PUBLIC_PORT
+        fromService:
+          type: web
+          name: education-platform-hosting
+          envVarKey: PORT
+      - key: ACCESS_TOKEN_SECRET
+        generateValue: true
+      - key: REFRESH_TOKEN_SECRET
+        generateValue: true
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: education-platform-redis
+          property: connectionString
+
+databases:
+  - name: education-platform-db
+    region: frankfurt
+    plan: free

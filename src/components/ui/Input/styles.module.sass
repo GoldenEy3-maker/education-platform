@@ -1,0 +1,59 @@
+.root
+  display: grid
+  gap: 0.3rem
+
+  &._error
+    color: hsl(var(--danger-hsl))
+
+    .wrapper
+      border-color: hsl(var(--danger-hsl))
+
+      &:focus-within
+        outline-color: hsl(var(--danger-hsl))
+
+.wrapper
+  --_padding-block: 0.8rem
+  --_padding-inline: 1rem
+
+  --_leading-icon-left: 0.8rem
+  --_leading-icon-size: var(--title-l-fs)
+
+  position: relative
+
+  min-width: clamp(16.25rem, 20vw + 12rem, 18.5rem)
+
+  border-radius: var(--small-shape)
+  border: 1px solid hsl(var(--outline-hsl))
+  overflow: hidden
+
+  &:focus-within
+    outline: 2px solid hsl(var(--primary-hsl))
+
+  input
+    width: 100%
+    padding: var(--_padding-block) var(--_padding-inline)
+
+    ._withLeadingIcon &
+      padding-left: calc(var(--_padding-inline) + var(--_leading-icon-size) + 0.4rem)
+
+    &:focus
+      outline: none
+
+    &:disabled
+      cursor: not-allowed
+      color: hsl(var(--on-surface-variant-hsl))
+
+    &:disabled ~ .leadingIcon
+      color: hsl(var(--on-surface-variant-hsl))
+
+.leadingIcon
+  display: flex
+  pointer-events: none
+  font-size: var(--_leading-icon-size)
+  position: absolute
+  top: 50%
+  left: var(--_leading-icon-left)
+
+  translate: 0 -50%
+
+.errorMessage

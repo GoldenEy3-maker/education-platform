@@ -1,0 +1,123 @@
+.btn
+  position: relative
+  overflow: hidden
+
+  display: flex
+  align-items: center
+  gap: 0.5rem
+
+  color: hsl(var(--primary-hsl))
+
+  padding: 0.7rem 1.5rem
+
+  border-radius: var(--full-shape)
+
+  svg
+    pointer-events: none
+
+  &._sm
+    padding: 0.5rem 1rem
+
+  &._textAlignCenter
+    justify-content: center
+
+  &._textAlignRight
+    justify-content: flex-end
+
+  &._asIcon
+    padding: 0.7rem
+
+  &._dangerClr
+    --ripple-hsl: var(--danger-hsl)
+
+    color: hsl(var(--danger-hsl))
+
+  &._defaultClr
+    color: hsl(var(--on-surface-hsl))
+
+  &._filled
+    --ripple-hsl: var(--surface-hsl)
+
+    background-color: hsl(var(--primary-hsl))
+    color: hsl(var(--on-primary-hsl))
+
+    &._dangerClr
+      --ripple-hsl: 0, 0%, 0%
+      background-color: hsl(var(--danger-hsl))
+      color: hsl(var(--on-danger-hsl))
+
+  &._elevated
+    background-color: hsl(var(--primary-container-low-hsl))
+    box-shadow: 0 0.1rem 0.1rem hsla(var(--primary-bxs-hsla))
+
+  &._outlined
+    outline: 1px solid hsl(var(--outline-hsl))
+    outline-offset: -1px
+
+    &._dangerClr
+      outline-color: hsl(var(--danger-hsl))
+
+  &:focus-visible,
+  &[data-auto-focus]
+    outline: 2px solid hsl(var(--focus-outline-clr-hsl))
+    outline-offset: 2px
+
+    &._dangerClr
+      --focus-outline-clr-hsl: var(--danger-hsl)
+
+  &:disabled
+    cursor: not-allowed
+
+    color: hsl(var(--primary-low-hsl))
+
+    &._dangerClr
+      color: hsl(var(--danger-low-hsl))
+
+    &._outlined
+      outline-color: hsl(var(--outline-variant-hsl))
+
+    &._filled
+      background-color: hsl(var(--primary-low-hsl))
+      color: hsl(var(--on-primary-hsl))
+
+      &._dangerClr
+        background-color: hsl(var(--danger-low-hsl))
+        color: hsl(var(--on-danger-hsl))
+
+  &._isActive
+    background-color: hsl(var(--primary-container-hsl))
+    color: hsl(var(--primary-hsl))
+
+  @media (hover: hover) and (pointer: fine)
+    &:not(:disabled):hover
+      background-color: hsl(var(--primary-container-hsl))
+
+      &._dangerClr
+        background-color: hsl(var(--danger-container-hsl))
+
+      &._filled
+        background-color: hsl(var(--primary-low-hsl))
+
+        &._dangerClr
+          background-color: hsl(var(--danger-low-hsl))
+
+      &._elevated
+        background-color: hsl(var(--primary-container-hsl))
+
+      &._defaultClr
+        color: hsl(var(--primary-hsl))
+
+.counter
+  position: absolute
+  right: 0.4rem
+  top: 0.3rem
+  color: hsl(var(--on-primary-hsl))
+  background-color: hsl(var(--primary-hsl))
+  font-size: var(--label-s-fs)
+  width: 1.1rem
+  height: 1rem
+  display: flex
+  align-items: center
+  justify-content: center
+  border-radius: var(--full-shape)
+  overflow: hidden

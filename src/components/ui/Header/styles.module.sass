@@ -1,0 +1,45 @@
+.header
+  grid-column: span 2
+
+  position: sticky
+  top: 0
+  left: 0
+  z-index: 5
+
+  width: 100%
+  height: var(--header-h)
+
+  padding: 0.5rem 1.1rem
+
+  display: flex
+  align-items: center
+  justify-content: space-between
+  gap: 1rem
+
+  background-color: hsl(var(--surface-container-hsl))
+
+  border-bottom: 1px solid hsl(var(--outline-variant-hsl))
+
+.leftSide
+  display: flex
+  align-items: center
+  gap: 2rem
+
+.title
+  display: flex
+  align-items: center
+  gap: 1rem
+
+  font-size: var(--body-extra-fs)
+  font-weight: 500
+
+.sidebarControl
+  font-size: var(--headline-s-fs)
+  &._modal
+    display: none
+
+  @media (max-width: 1300px)
+    display: none
+
+    &._modal
+      display: flex

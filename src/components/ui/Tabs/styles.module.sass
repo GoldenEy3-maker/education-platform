@@ -1,0 +1,52 @@
+.root
+  overflow: hidden
+  border-bottom: 1px solid hsl(var(--outline-variant-hsl))
+
+.track
+  position: relative
+  touch-action: none
+  display: flex
+  will-change: transform
+  transition: transform 200ms ease-in-out
+
+.cursor
+  position: absolute
+  z-index: 2
+  display: block
+  border-radius: var(--full-shape)
+  bottom: 0
+  height: 2px
+  background-color: hsl(var(--primary-hsl))
+  transition: left 200ms ease-in-out, width 200ms ease-in-out
+
+.item
+  display: flex
+  font-size: var(--body-l-fs)
+  white-space: nowrap
+
+  label
+    display: block
+    overflow: hidden
+    position: relative
+    padding: 0.7rem 1.5rem
+    user-select: none
+
+  input
+    position: absolute
+    width: 0
+    height: 0
+    opacity: 0
+
+    &:disabled + label
+      cursor: not-allowed
+      pointer-events: none
+      color: hsl(var(--on-surface-variant-hsl))
+
+    &:focus-visible + label
+      color: hsl(var(--primary-hsl))
+      background-color: hsl(var(--primary-container-hsl))
+
+    @media (hover: hover) and (pointer: fine)
+      &:not(:disabled) + label:hover
+        color: hsl(var(--primary-hsl))
+        background-color: hsl(var(--primary-container-low-hsl))

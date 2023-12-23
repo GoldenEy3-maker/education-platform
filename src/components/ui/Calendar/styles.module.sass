@@ -1,0 +1,47 @@
+.header
+  display: flex
+  align-items: center
+  justify-content: space-between
+  gap: 1rem
+
+  margin-bottom: 1rem
+
+  &Actions
+    display: flex
+    align-items: center
+    font-size: var(--title-l-fs)
+
+  &Curr
+    padding: 0 1.5rem
+    color: hsl(var(--primary-hsl))
+    flex: 1
+
+._notCurrentMonth
+  color: hsl(var(--outline-hsl))
+
+._currentDate
+  background-color: hsl(var(--primary-container-hsl))
+
+.weeks
+  display: grid
+  grid-template-columns: repeat(7, minmax(0, 1fr))
+  place-items: center
+
+  margin-bottom: 0.5rem
+
+.main
+  button
+    display: flex
+    align-items: center
+    justify-content: center
+
+    border-radius: 0
+
+.daysGrid
+  display: grid
+  grid-template-columns: repeat(7, minmax(0, 1fr))
+
+.monthsGrid
+  display: grid
+  grid-template-columns: repeat(3, minmax(0, 1fr))
+  grid-template-rows: repeat(4, minmax(0, calc(var(--height) / 4)))

@@ -1,0 +1,158 @@
+.root
+  --_controller-check-size: 1.2rem
+  --_controller-switch-width: 2.6rem
+  --_controller-margin: 0.5rem
+  --_controller-padding: 0.5rem
+
+  --_label-gap: 0.5rem
+
+  display: flex
+  align-items: center
+
+  input
+    opacity: 0
+    width: 0
+    height: 0
+
+    &:focus-visible + .wrapper,
+    &[data-auto-focus] + .wrapper
+      outline: 2px solid hsl(var(--focus-outline-clr-hsl))
+      outline-offset: 2px
+
+    &:checked + .wrapper
+      .checkboxIcon
+        background-color: hsl(var(--primary-hsl))
+        border-color: hsl(var(--primary-hsl))
+
+        animation: jumping 300ms var(--bounce-transition) forwards
+
+      .switchIcon
+        background-color: hsl(var(--primary-hsl))
+        border-color: hsl(var(--primary-hsl))
+
+        span
+          width: 1rem
+          height: 1rem
+          background-color: hsl(var(--on-primary-hsl))
+          translate: 1.23rem 0
+
+    &:disabled + .wrapper label
+      cursor: not-allowed
+      color: hsl(var(--on-surface-variant-hsl))
+
+    &:disabled:checked + .wrapper
+      .checkboxIcon
+        background-color: hsl(var(--primary-low-hsl))
+        border-color: hsl(var(--primary-low-hsl))
+
+      .switchIcon
+        background-color: hsl(var(--primary-low-hsl))
+
+.wrapper
+  position: relative
+  overflow: hidden
+  cursor: pointer
+
+  width: 100%
+
+  border-radius: var(--small-shape)
+
+  label
+    position: relative
+    overflow: hidden
+
+    flex: 1
+
+    display: flex
+    align-items: center
+    gap: var(--_label-gap)
+
+    padding: 0.7rem
+    padding-left: calc(var(--_controller-margin) + var(--_controller-check-size) + (var(--_controller-padding) * 2) + var(--_label-gap))
+
+    ._switchController &
+      padding-left: calc(var(--_controller-switch-width) + 1.5rem + var(--_controller-padding))
+
+  ._controllerRight &
+    label
+      padding-left: 0.7rem
+
+    .controller
+      left: auto
+      right: var(--_controller-margin)
+
+.switchIcon
+  width: var(--_controller-switch-width)
+  height: 1.5rem
+
+  display: flex
+  align-items: center
+
+  background-color: hsl(var(--surface-hsl))
+  border: 2px solid hsl(var(--outline-hsl))
+  border-radius: var(--full-shape)
+
+  transition: background-color 200ms ease-in-out, border-color 200ms ease-in-out
+
+  span
+    display: block
+    width: 0.8rem
+    height: 0.8rem
+    background-color: hsl(var(--outline-hsl))
+    border-radius: 50%
+    translate: 0.2rem 0
+
+    transition: background-color 200ms ease-in-out, translate 300ms var(--bounce-transition), width 200ms ease-in-out, height 200ms ease-in-out
+
+.checkboxIcon
+  display: flex
+  align-items: center
+  justify-content: center
+
+  width: var(--_controller-check-size)
+  height: var(--_controller-check-size)
+
+  border: 2px solid hsl(var(--outline-hsl))
+  border-radius: var(--extra-small-shape)
+
+  color: hsl(var(--surface-hsl))
+
+  transition: background-color 200ms ease-in-out, border-color 200ms ease-in-out
+
+  svg
+    animation: scaling 200ms ease-in-out forwards
+
+.leadingIcon
+  display: flex
+  font-size: var(--title-l-fs)
+
+.controller
+  position: absolute
+  top: 50%
+  left: var(--_controller-margin)
+
+  padding: var(--_controller-padding) !important
+
+  translate: 0 -50%
+
+@keyframes jumping
+  from
+    scale: 1
+
+  50%
+    scale: 0.9
+
+  from
+    scale: 1
+
+@keyframes scaling
+  from
+    scale: 0
+
+  to
+    scale: 1
+
+@media (hover: hover) and (pointer: fine)
+  .root:not(:has(input:disabled)) .wrapper:not(:has(.controller:hover)):hover
+    background-color: hsl(var(--primary-container-low-hsl))
+    color: hsl(var(--primary-hsl))

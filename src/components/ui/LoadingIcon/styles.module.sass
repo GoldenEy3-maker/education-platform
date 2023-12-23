@@ -1,0 +1,23 @@
+
+.spinner
+  animation: rotate-spinner 1.4s linear infinite
+
+.circle
+  stroke-dasharray: 60
+  stroke-dashoffset: 0
+  transform-origin: center
+  animation: rotate-circle 1.4s ease-in-out infinite
+
+@keyframes rotate-circle
+  from
+    stroke-dashoffset: 60
+  50%
+    stroke-dashoffset: calc(60 / 4)
+    rotate: 135deg
+  to
+    stroke-dashoffset: 60
+    rotate: 450deg
+
+@keyframes rotate-spinner
+  to
+    rotate: 270deg

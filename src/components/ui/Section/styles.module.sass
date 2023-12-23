@@ -1,0 +1,29 @@
+.root
+  background-color: hsl(var(--surface-container-hsl))
+  box-shadow: 0 0 0.3rem hsla(var(--surface-bxs-hsla))
+  border-radius: var(--medium-shape)
+  padding: 1.5rem
+
+  &._spanGridArea
+    grid-area: span 2
+
+.header
+  display: flex
+  align-items: center
+  justify-content: space-between
+  gap: 1rem
+
+  margin-bottom: 1rem
+
+.group
+  display: grid
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr))
+  gap: 1rem
+
+.title
+  display: flex
+  align-items: center
+  gap: 0.5rem
+
+  font-size: var(--title-l-fs)
+  font-weight: 500

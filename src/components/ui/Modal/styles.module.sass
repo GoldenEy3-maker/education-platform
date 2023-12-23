@@ -1,0 +1,125 @@
+.container
+  position: fixed
+  top: 0
+  left: 0
+  z-index: 10
+
+  opacity: 0
+  visibility: hidden
+
+  width: 100%
+  height: 100%
+
+  background-color: hsla(0, 0%, 0%, 0.7)
+
+  transition: opacity 200ms ease-in-out, visibility 200ms ease-in-out
+
+  &Wrapper
+    position: relative
+
+    width: 100%
+    height: 100%
+
+  &[aria-hidden="false"]
+    opacity: 1
+    visibility: visible
+
+.root
+  --_padding-inline: 1.5rem
+
+  position: absolute
+  inset: 0
+
+  opacity: 0
+  visibility: hidden
+
+  display: grid
+  place-content: center
+  place-items: center
+
+  padding: 0.5rem
+
+  width: 100%
+  height: 100%
+
+  contain: paint
+
+  transition: opacity 200ms ease-in-out, visibility 200ms ease-in-out
+
+  &Wrapper
+    display: flex
+    flex-direction: column
+    gap: 0.8rem
+
+    background-color: hsl(var(--surface-container-hsl))
+    border-radius: var(--medium-shape)
+
+    max-width: 32rem
+
+    height: 100%
+
+    transform: translate(0, -20px) scale(0.95)
+
+    overflow: hidden
+
+    padding-bottom: 1rem
+
+    transition: transform 200ms ease-in-out
+
+  &._drawer
+    place-content: stretch
+    place-items: start end
+
+    .rootWrapper
+      transform: translate(10rem, 0) scale(1)
+
+      max-width: 50rem
+      height: 100%
+
+    &._leftPos
+      place-items: start
+
+      .rootWrapper
+        transform: translate(-10rem, 0) scale(1)
+
+  &[aria-hidden="false"]
+    position: static
+
+    opacity: 1
+    visibility: visible
+
+    .rootWrapper
+      transform: translate(0) !important
+
+.header
+  display: flex
+  align-items: center
+  justify-content: space-between
+  gap: 1rem
+
+  font-size: var(--title-l-fs)
+  padding-inline: var(--_padding-inline)
+  padding-block: 0.7rem
+
+  border-bottom: 1px solid hsl(var(--outline-variant-hsl))
+
+  &._headerJustifyContentStart
+    justify-content: start
+
+.title
+  font-weight: 500
+
+.close
+  flex-shrink: 0
+
+.content
+  padding: 0.2rem var(--_padding-inline)
+  overflow: auto
+
+.footer
+  display: flex
+  align-items: center
+  justify-content: flex-end
+  gap: 1rem
+
+  padding-inline: 1.5rem

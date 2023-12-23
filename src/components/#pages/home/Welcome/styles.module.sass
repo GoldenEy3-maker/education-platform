@@ -1,0 +1,58 @@
+.header
+  display: flex
+  align-items: center
+  gap: 1rem
+
+  margin-bottom: 1rem
+
+.title
+  font-weight: 500
+  font-size: var(--headline-m-fs)
+
+.wrapper
+  position: relative
+
+  width: 100%
+  height: 400px
+
+  margin-inline: auto
+
+  border-radius: var(--large-shape)
+
+  overflow: hidden
+
+  &:after
+    content: ""
+
+    position: absolute
+    inset: 0
+
+    background-color: hsla(0, 0%, 0%, 0.7)
+
+.overlay
+  position: absolute
+  inset: 0
+  z-index: 2
+
+  display: flex
+  flex-direction: column
+  align-items: flex-start
+
+  padding: 2rem
+
+  color: hsl(var(--surface-hsl))
+
+  a
+    --_outline-clr: var(--surface-hsl)
+
+    margin-top: auto
+
+  h2
+    font-size: var(--display-s-fs)
+    font-weight: 500
+
+  p
+    margin-top: 1rem
+    font-size: var(--body-extra-fs)
+
+    max-width: 70%

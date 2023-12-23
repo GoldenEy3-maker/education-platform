@@ -1,0 +1,77 @@
+.footer
+  --selection-bg-hsl: var(--surface-hsl)
+  --selection-clr-hsl: var(--on-surface-hsl)
+  --focus-outline-clr-hsl: var(--surface-hsl)
+
+  background-color: hsl(var(--primary-high-hsl))
+  color: hsl(var(--on-primary-hsl))
+
+  padding-block: 3rem
+
+  a
+    color: hsl(var(--on-primary-hsl))
+
+.header
+  display: flex
+  align-items: center
+  justify-content: space-between
+  gap: 1rem
+  padding-inline: 2rem
+
+.symbols
+  display: flex
+  align-items: center
+  gap: 1rem
+
+.logo
+  flex-shrink: 0
+
+.title
+  font-size: var(--title-l-fs)
+  font-weight: 500
+
+.address
+  color: hsl(var(--on-primary-variant-hsl))
+  font-size: var(--body-m-fs)
+
+.social
+  display: flex
+  align-items: center
+  flex-wrap: wrap
+  gap: 0.5rem
+
+  font-size: var(--headline-m-fs)
+
+  > a
+    flex-shrink: 0
+
+.contacts
+  font-size: var(--body-m-fs)
+
+  margin-top: 2rem
+
+  color: hsl(var(--on-primary-variant-hsl))
+
+  text-align: center
+
+.nav
+  flex: 1
+
+  display: grid
+  place-items: center
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))
+  gap: 1rem
+
+  margin-top: 1rem
+
+  &Group
+    h5
+      font-weight: 500
+      font-size: var(--body-extra-fs)
+      margin-bottom: 1rem
+
+  &Links
+    display: grid
+
+    a
+      padding-block: 0.2rem

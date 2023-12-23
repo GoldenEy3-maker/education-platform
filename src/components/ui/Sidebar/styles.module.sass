@@ -1,0 +1,132 @@
+.aside
+  --_groups-padding-block: 0.7rem
+  --_groups-padding-inline: 0.8rem
+
+  position: sticky
+  top: var(--header-h)
+  height: calc(100svh - var(--header-h))
+  background-color: hsl(var(--surface-container-hsl))
+
+  padding-block: var(--safe-padding)
+
+  max-width: 240px
+  flex-shrink: 0
+
+  overflow: hidden auto
+
+  border-right: 1px solid hsl(var(--outline-variant-hsl))
+
+  &._modal
+    --_groups-padding-inline: 0
+
+    position: static
+    background-color: transparent
+    height: auto
+
+    padding: 0.3rem
+
+    border-right: none
+
+    max-width: none
+
+  &:not(._modal)
+    &[aria-expanded="false"]
+      --_groups-padding-inline: 0.3rem
+
+      .nav
+        display: none
+
+        &._shrinked
+          display: flex
+          align-items: center
+
+        &Link
+          gap: 0.3rem
+          flex-direction: column
+          padding: 0.8rem 0.5rem
+          font-size: var(--label-s-fs)
+
+    @media (max-width: 1300px)
+      --_groups-padding-inline: 0.3rem
+
+      .nav
+        display: none
+
+        &._shrinked
+          display: flex
+          align-items: center
+
+        &Link
+          gap: 0.3rem
+          flex-direction: column
+          padding: 0.8rem 0.5rem
+          font-size: var(--label-s-fs)
+
+      .activeNavLink
+        background-color: transparent
+
+    @media (max-width: 792px)
+      display: none
+
+.signIn
+  display: grid
+  place-items: center
+  gap: 0.2rem
+
+  span
+    font-size: var(--body-l-fs)
+    color: hsl(var(--on-surface-variant-hsl))
+
+.nav
+  display: flex
+  flex-direction: column
+  gap: 0.3rem
+
+  &._shrinked
+    display: none
+
+  svg
+    font-size: var(--headline-s-fs)
+
+  &Group
+    display: flex
+    flex-direction: column
+    gap: 0.3rem
+
+    padding: var(--_groups-padding-block) var(--_groups-padding-inline)
+
+    border-bottom: 1px solid hsl(var(--outline-variant-hsl))
+
+    &:first-child
+      padding-top: 0
+
+    &:last-child
+      border-bottom: 0
+      padding-bottom: 0
+
+    &Label
+      margin-left: 1rem
+      font-weight: 500
+
+    &List
+      display: flex
+      flex-direction: column
+      align-items: stretch
+      gap: 0.3rem
+
+  &Link
+    gap: 1rem
+
+    padding: 0.6rem 1rem
+    border-radius: var(--small-shape)
+
+    font-size: var(--body-m-fs)
+
+    span
+      white-space: nowrap
+      text-overflow: ellipsis
+      overflow: hidden
+
+.activeNavLink
+  color: hsl(var(--primary-hsl)) !important
+  background-color: hsl(var(--primary-container-low-hsl))

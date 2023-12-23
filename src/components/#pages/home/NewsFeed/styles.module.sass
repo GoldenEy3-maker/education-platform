@@ -1,0 +1,64 @@
+.wrapper
+  display: grid
+  gap: 0.2rem
+
+.item
+  position: relative
+  overflow: hidden
+
+  padding: 0.5rem
+
+  border-radius: var(--small-shape)
+
+  color: hsl(var(--on-surface-hsl))
+
+  @media (hover: hover) and (pointer: fine)
+    &:hover
+      text-decoration: none
+      background-color: hsl(var(--primary-container-low-hsl))
+
+.header
+  margin-bottom: 0.5rem
+  display: flex
+  align-items: center
+
+.image
+  position: relative
+  width: 9.3rem
+  height: 9.3rem
+
+  flex-shrink: 0
+
+  border-radius: var(--medium-shape)
+  overflow: hidden
+
+.title
+  color: hsl(var(--primary-hsl))
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
+
+.main
+  display: flex
+  gap: 1rem
+
+.text
+  display: flex
+  flex-direction: column
+
+.description
+  display: -webkit-box
+  -webkit-box-orient: vertical
+  -webkit-line-clamp: 5
+  overflow: hidden
+
+.footer
+  display: flex
+  align-items: center
+  justify-content: flex-end
+  gap: 1rem
+
+  margin-top: auto
+
+  time
+    color: hsl(var(--on-surface-variant-hsl))
