@@ -3,12 +3,10 @@ import { WebSocketServer } from "ws"
 import { appRouter } from "./api/root"
 import { createTRPCContext } from "./api/trpc"
 
-const port = parseInt(process.env.NEXT_PUBLIC_PORT ?? "3001")
-const host = process.env.NEXT_PUBLIC_APP_HOSTNAME ?? "127.0.0.1"
+const port = parseInt(process.env.PORT ?? "3001")
 
 const wss = new WebSocketServer({
   port,
-  host,
 })
 
 const handler = applyWSSHandler({
@@ -24,7 +22,7 @@ wss.on("connection", (ws) => {
   })
 })
 
-console.log(`✅ WebSocket Server listening on ws://${host}:${port}`)
+console.log(`✅ WebSocket Server listening on ws://127.0.0.1:${port}`)
 
 process.on("SIGTERM", () => {
   console.log("SIGTERM")

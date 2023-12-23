@@ -6,8 +6,8 @@ import { WebSocketServer } from "ws"
 import { appRouter } from "./api/root"
 import { createTRPCContext } from "./api/trpc"
 
-const port = parseInt(process.env.NEXT_PUBLIC_PORT ?? "3000", 10)
-const hostname = process.env.NEXT_PUBLIC_APP_HOSTNAME ?? "127.0.0.1"
+const port = parseInt(process.env.PORT ?? "3000", 10)
+const hostname = process.env.APP_HOSTNAME ?? "127.0.0.1"
 const dev = process.env.NODE_ENV !== "production"
 const app = next({ dev, port, hostname, dir: process.cwd() })
 const handle = app.getRequestHandler()
