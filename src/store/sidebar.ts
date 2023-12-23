@@ -6,7 +6,7 @@ type SidebarStore = {
   shrink: () => void
 }
 
-export const useSidebarStore = create<SidebarStore>((set, get) => ({
+export const useSidebarStore = create<SidebarStore>((set) => ({
   isExpanded: true,
   shrink() {
     set(() => ({ isExpanded: false }))

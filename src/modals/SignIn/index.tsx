@@ -109,7 +109,7 @@ const SignInModal: React.FC = () => {
               )}
             />
           </Form.Fieldset>
-          <Form.Fieldset type="checkbox">
+          <Form.Fieldset>
             <Controller
               control={form.control}
               name="rememberMe"

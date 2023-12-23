@@ -1,6 +1,6 @@
-import { User } from "@prisma/client"
+import { type User } from "@prisma/client"
 import { create } from "zustand"
-import { RouterOutputs } from "~/utils/api"
+import { type RouterOutputs } from "~/utils/api"
 
 type SessionStore = {
   token: string | null
@@ -11,7 +11,7 @@ type SessionStore = {
   clear: () => void
 }
 
-export const useSessionStore = create<SessionStore>((set, get) => ({
+export const useSessionStore = create<SessionStore>((set) => ({
   token: null,
   user: null,
   setToken(token) {

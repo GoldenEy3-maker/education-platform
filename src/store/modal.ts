@@ -1,5 +1,5 @@
 import { create } from "zustand"
-import { GlobalDatasetKeyMap, ModalKeyMap } from "~/utils/enums"
+import { GlobalDatasetKeyMap, type ModalKeyMap } from "~/utils/enums"
 
 type ModalProps = Record<ModalKeyMap, unknown>
 
@@ -55,7 +55,10 @@ export const useModalStore = create<ModalStore>((set, get) => ({
     )
 
     if (newQueue.length === 0) {
-      setTimeout(() => document.body.removeAttribute(GlobalDatasetKeyMap.LockByModal), 200)
+      setTimeout(
+        () => document.body.removeAttribute(GlobalDatasetKeyMap.LockByModal),
+        200
+      )
 
       const target = get().target
 

@@ -54,6 +54,11 @@ const PopoverNotifications: React.FC = () => {
   const getNotificationsBySessionQuery =
     api.notification.getBySession.useQuery()
 
+  const isDisabledActions =
+    getNotificationsBySessionQuery.isLoading ||
+    !getNotificationsBySessionQuery.data ||
+    getNotificationsBySessionQuery.data.length === 0
+
   api.notification.onSend.useSubscription(
     { userId: sessionStore.user?.id ?? null },
     {
@@ -106,11 +111,7 @@ const PopoverNotifications: React.FC = () => {
               asIcon
               onClick={() => readNotification.mutate()}
               title="Пометить все, как прочитанное"
-              disabled={
-                getNotificationsBySessionQuery.isLoading ||
-                !getNotificationsBySessionQuery.data ||
-                getNotificationsBySessionQuery.data.length === 0
-              }
+              disabled={isDisabledActions}
             >
               <IconCheckSqure />
             </Button>
@@ -125,11 +126,7 @@ const PopoverNotifications: React.FC = () => {
                   target: event.currentTarget,
                 })
               }
-              disabled={
-                getNotificationsBySessionQuery.isLoading ||
-                !getNotificationsBySessionQuery.data ||
-                getNotificationsBySessionQuery.data.length === 0
-              }
+              disabled={isDisabledActions}
             >
               <IconTrash />
             </Button>
@@ -169,7 +166,7 @@ const PopoverNotifications: React.FC = () => {
                   <span>
                     <IconSolidAlarm />
                   </span>
-                  <p>У вас пока нет уведомлений.</p>
+                  <strong>У вас пока нет уведомлений.</strong>
                   <p>Возвращайтесь позже.</p>
                 </div>
               )
@@ -193,7 +190,7 @@ const PopoverNotifications: React.FC = () => {
                   <span>
                     <IconSolidAlarm />
                   </span>
-                  <p>В этом разделе ничего нет.</p>
+                  <strong>В этом разделе ничего нет.</strong>
                   <p>Попробуйте другой.</p>
                 </div>
               )
