@@ -14,7 +14,7 @@ const SidebarModal: React.FC = () => {
   useRouterChangeEvent(() => modalStore.close(ModalKeyMap.Sidebar))
 
   return (
-    <Modal state={isModalOpen} asDrawer position="left">
+    <Modal isOpen={isModalOpen} asDrawer position="left">
       <Modal.Header isJustifyContentStart>
         <Modal.Close onClick={() => modalStore.close(ModalKeyMap.Sidebar)} />
         <Image

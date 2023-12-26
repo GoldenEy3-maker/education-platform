@@ -8,22 +8,36 @@ import { Title } from "./Title"
 import styles from "./styles.module.sass"
 
 type ModalProps = {
-  state: boolean
+  isOpen: boolean
   asDrawer?: boolean
   position?: "left" | "center" | "right"
+  wrapperClassName?: string
 } & Omit<React.ComponentProps<"div">, "aria-hidden">
 
-const Modal = ({ state, asDrawer, position, ...props }: ModalProps) => {
+const Modal = ({
+  isOpen,
+  asDrawer,
+  position,
+  wrapperClassName,
+  ...props
+}: ModalProps) => {
   return (
     <div
       {...props}
-      className={cls(styles.root, props.className, {
-        [styles._drawer ?? ""]: !!asDrawer,
-        [styles._leftPos ?? ""]: !!asDrawer && position === "left",
-      })}
-      aria-hidden={!state}
+      className={cls(
+        styles.root,
+        {
+          [styles._drawer ?? ""]: !!asDrawer,
+          [styles._leftPos ?? ""]: !!asDrawer && position === "left",
+        },
+        props.className
+      )}
+      aria-hidden={!isOpen}
     >
-      <div data-modal-root="" className={styles.rootWrapper}>
+      <div
+        data-modal-root
+        className={cls(styles.rootWrapper, wrapperClassName)}
+      >
         {props.children}
       </div>
     </div>

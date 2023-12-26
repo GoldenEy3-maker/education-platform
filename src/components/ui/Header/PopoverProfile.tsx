@@ -3,6 +3,7 @@ import Button from "~/components/ui/Button"
 import Checkbox from "~/components/ui/Checkbox"
 import {
   IconCalendar,
+  IconChevronDown,
   IconCog,
   IconFolder,
   IconLogOut,
@@ -33,16 +34,23 @@ const PopoverProfile: React.FC = () => {
 
   return (
     <Popover closeHandler={closePopoverHandler}>
-      <Popover.Trigger variant="filled" asIcon onClick={togglePopoverHandler}>
-        <UserAvatar />
+      <Popover.Trigger
+        onClick={togglePopoverHandler}
+        className={styles.trigger}
+        color="default"
+        isActive={isPopoverOpen}
+      >
+        {sessionStore.user?.surname} {sessionStore.user?.name}
+        <div className={styles.triggerIcons}>
+          <UserAvatar className={styles.triggerIconsAvatar} />
+          <IconChevronDown />
+        </div>
       </Popover.Trigger>
       <Popover.Wrapper isOpen={isPopoverOpen}>
         <Popover.Content>
           <div className={styles.profile}>
             <div className={styles.profileImg}>
-              <span>
-                <UserAvatar src={sessionStore.user?.avatar} />
-              </span>
+              <UserAvatar src={sessionStore.user?.avatar} />
             </div>
             <p className={styles.credentials}>
               <strong>

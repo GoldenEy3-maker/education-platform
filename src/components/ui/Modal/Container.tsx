@@ -1,28 +1,23 @@
-import { useRef } from "react"
 import { useDocEventListener } from "~/hooks/docEvent.hook"
+import { useModalStore } from "~/store/modal"
 import { cls } from "~/utils/func"
 import styles from "./styles.module.sass"
 
-type ContainerProps = {
-  state: boolean
-  closeHandler: () => void
-} & Omit<React.ComponentProps<"div">, "aria-hidden">
+export const Container: React.FC<
+  Omit<React.ComponentProps<"div">, "aria-hidden">
+> = (props) => {
+  const modalStore = useModalStore()
 
-export const Container: React.FC<ContainerProps> = ({
-  state,
-  closeHandler,
-  ...props
-}) => {
-  const containerRef = useRef<HTMLDivElement>(null)
+  const isContainerOpen = modalStore.queue.length !== 0
 
   const clickOutsideHandler: React.PointerEventHandler<HTMLDivElement> = (
     event
   ) => {
     if (
       !(event.target as HTMLElement).closest("[data-modal-root]") ||
-      !containerRef.current?.contains(event.target as HTMLElement)
+      !event.currentTarget.contains(event.target as HTMLElement)
     )
-      closeHandler()
+      modalStore.close()
 
     if (props.onPointerDown) props.onPointerDown(event)
   }
@@ -33,17 +28,17 @@ export const Container: React.FC<ContainerProps> = ({
     if (
       event.relatedTarget !== null &&
       !event.relatedTarget.closest("[data-modal-root]") &&
-      !containerRef.current?.contains(event.relatedTarget as HTMLElement)
+      !event.currentTarget.contains(event.relatedTarget as HTMLElement)
     )
-      closeHandler()
+      modalStore.close()
 
     if (props.onBlur) props.onBlur(event)
   }
 
   const closeOnKeyPressHandler = (event: KeyboardEvent) => {
-    if (!state) return
+    if (!isContainerOpen) return
 
-    if (event.code === "Escape") closeHandler()
+    if (event.code === "Escape") modalStore.close()
   }
 
   useDocEventListener("keyup", closeOnKeyPressHandler)
@@ -52,8 +47,7 @@ export const Container: React.FC<ContainerProps> = ({
     <div
       {...props}
       className={cls(styles.container, props.className)}
-      aria-hidden={!state}
-      ref={containerRef}
+      aria-hidden={!isContainerOpen}
       onPointerDown={clickOutsideHandler}
       onBlur={blurOutsideHandler}
     >

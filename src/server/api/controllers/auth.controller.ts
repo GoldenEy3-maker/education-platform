@@ -11,30 +11,6 @@ class AuthController {
 
   signIn() {
     return publicProcedure.input(authSignInInput).mutation(async (opts) => {
-      if (opts.input.login === "admin") {
-        await opts.ctx.db.user.create({
-          data: {
-            login: "admin",
-            name: "Данил",
-            surname: "Королев",
-            patronymic: "Николаевич",
-            password: await bcrypt.hash("admin", 12),
-            role: "Admin",
-          },
-        })
-      } else if (opts.input.login === "test") {
-        await opts.ctx.db.user.create({
-          data: {
-            login: "test",
-            name: "Ивано",
-            surname: "Иванов",
-            patronymic: "Иванович",
-            password: await bcrypt.hash("test", 12),
-            role: "Student",
-          },
-        })
-      }
-
       const user = await opts.ctx.db.user.findUnique({
         where: {
           login: opts.input.login,

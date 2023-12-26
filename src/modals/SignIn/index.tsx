@@ -61,7 +61,7 @@ const SignInModal: React.FC = () => {
   useAutoFocus(loginInputRef, isModalOpen)
 
   return (
-    <Modal state={isModalOpen}>
+    <Modal isOpen={isModalOpen}>
       <Modal.Header>
         <Modal.Title>Войти</Modal.Title>
         <Modal.Close onClick={closeModalHandler} />

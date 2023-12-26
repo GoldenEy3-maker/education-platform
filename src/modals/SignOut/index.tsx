@@ -34,7 +34,7 @@ const SignOutModal: React.FC = () => {
   useAutoFocus(cancelButtonRef, isModalOpen)
 
   return (
-    <Modal state={isModalOpen}>
+    <Modal isOpen={isModalOpen}>
       <Modal.Header>
         <Modal.Title>Вы действительно хотите выйти?</Modal.Title>
         <Modal.Close onClick={closeModalHandler} />

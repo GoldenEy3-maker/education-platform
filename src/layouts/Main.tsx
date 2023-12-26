@@ -22,13 +22,13 @@ const MainLayout: React.FC<MainLayoutProps> = (props) => {
         <link rel="icon" type="image/png" href="/favicon.png" />
       </Head>
       <div className={inter.className}>
+        <MainModalContainer />
         <div className="wrapper">
           <Header />
           <Sidebar />
           {props.children}
         </div>
         <Footer />
-        <MainModalContainer />
       </div>
     </>
   )

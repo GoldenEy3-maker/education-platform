@@ -32,7 +32,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ) => {
     const rippleEffectEvent = useRippleEffect()
 
-    const isLoading = loading ?? (props.type === "submit" && props.disabled)
+    const isLoading = loading || (props.type === "submit" && props.disabled)
 
     return (
       <button
@@ -53,10 +53,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         })}
         onPointerDown={rippleEffectEvent}
         ref={ref}
-        disabled={isLoading ?? props.disabled}
+        disabled={isLoading || props.disabled}
       >
         {counter ? (
-          <span className={styles.counter}>{Math.min(counter ?? 0, 99)}</span>
+          <span className={styles.counter}>{Math.min(counter || 0, 99)}</span>
         ) : null}
         {isLoading ? <LoadingIcon /> : null}
         {isLoading && asIcon ? null : props.children}

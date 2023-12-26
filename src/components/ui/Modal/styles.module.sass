@@ -10,6 +10,7 @@
   width: 100%
   height: 100%
 
+  backdrop-filter: blur(5px)
   background-color: hsla(0, 0%, 0%, 0.7)
 
   transition: opacity 200ms ease-in-out, visibility 200ms ease-in-out
@@ -47,9 +48,9 @@
   transition: opacity 200ms ease-in-out, visibility 200ms ease-in-out
 
   &Wrapper
-    display: flex
-    flex-direction: column
-    gap: 0.8rem
+    display: grid
+    grid-template-rows: auto 1fr
+    gap: 0.2rem
 
     background-color: hsl(var(--surface-container-hsl))
     border-radius: var(--medium-shape)
@@ -99,7 +100,7 @@
 
   font-size: var(--title-l-fs)
   padding-inline: var(--_padding-inline)
-  padding-block: 0.7rem
+  padding-block: 0.5rem
 
   border-bottom: 1px solid hsl(var(--outline-variant-hsl))
 
@@ -113,7 +114,7 @@
   flex-shrink: 0
 
 .content
-  padding: 0.2rem var(--_padding-inline)
+  padding: 0.8rem var(--_padding-inline)
   overflow: auto
 
 .footer

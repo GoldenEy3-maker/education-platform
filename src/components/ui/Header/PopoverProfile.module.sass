@@ -1,3 +1,20 @@
+.trigger
+  padding: 0.1rem 1rem
+  font-size: var(--body-l-fs)
+  gap: 0.7rem
+
+  &Icons
+    display: flex
+    align-items: center
+    gap: 0.2rem
+
+    &Avatar
+      font-size: var(--body-extra-fs)
+
+  @media (hover: hover) and (pointer: fine)
+    &Icons
+      &Avatar
+        color: hsl(var(--on-surface-hsl))
 
 .profile
   display: grid
@@ -22,18 +39,12 @@
     place-items: start
 
     span
-      position: relative
       font-size: 1.5rem
 
-      width: 60px
-      height: 60px
-
-      display: grid
-      place-items: center
+      width: 3.75rem
+      height: 3.75rem
 
       overflow: hidden
-      border-radius: var(--full-shape)
-      background-color: hsl(var(--placeholder-hsl))
 
 .credentials
   grid-column: content
@@ -72,3 +83,7 @@
 
     svg
       font-size: 1.3rem
+
+@media (hover: hover) and (pointer: fine)
+  .triggerIconsAvatar
+    color: hsl(var(--on-surface-hsl))

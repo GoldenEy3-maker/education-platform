@@ -166,7 +166,8 @@ const PopoverNotifications: React.FC = () => {
                   <span>
                     <IconSolidAlarm />
                   </span>
-                  <strong>У вас пока нет уведомлений.</strong>
+                  <strong>Ничего не найдено</strong>
+                  <p>У вас пока нет уведомлений.</p>
                   <p>Возвращайтесь позже.</p>
                 </div>
               )
@@ -190,7 +191,8 @@ const PopoverNotifications: React.FC = () => {
                   <span>
                     <IconSolidAlarm />
                   </span>
-                  <strong>В этом разделе ничего нет.</strong>
+                  <strong>Ничего не найдено</strong>
+                  <p>В этом разделе ничего нет.</p>
                   <p>Попробуйте другой.</p>
                 </div>
               )

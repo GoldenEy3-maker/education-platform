@@ -35,7 +35,7 @@ const DeleteNotificationsModal = () => {
   useAutoFocus(cancelButtonRef, isModalOpen)
 
   return (
-    <Modal state={isModalOpen}>
+    <Modal isOpen={isModalOpen}>
       <Modal.Header>
         <Modal.Title>Удалить уведомления</Modal.Title>
         <Modal.Close onClick={closeModalHandler} />
