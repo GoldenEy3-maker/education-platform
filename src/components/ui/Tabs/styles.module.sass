@@ -25,7 +25,8 @@
   white-space: nowrap
 
   label
-    display: block
+    display: flex
+    gap: 0.5rem
     overflow: hidden
     position: relative
     padding: 0.7rem 1.5rem
@@ -46,7 +47,21 @@
       color: hsl(var(--primary-hsl))
       background-color: hsl(var(--primary-container-hsl))
 
-    @media (hover: hover) and (pointer: fine)
-      &:not(:disabled) + label:hover
-        color: hsl(var(--primary-hsl))
-        background-color: hsl(var(--primary-container-low-hsl))
+.counter
+  display: grid
+  place-content: center
+
+  font-size: var(--body-s-fs)
+
+  background-color: hsl(var(--primary-hsl))
+  color: hsl(var(--on-primary-hsl))
+
+  width: 1.4rem
+  height: 1.2rem
+
+  border-radius: var(--extra-small-shape)
+
+@media (hover: hover) and (pointer: fine)
+  .item input:not(:disabled) + label:hover
+    color: hsl(var(--primary-hsl))
+    background-color: hsl(var(--primary-container-low-hsl))

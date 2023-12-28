@@ -1,16 +1,15 @@
+.content
+  padding-inline: 0
+
 .list
   list-style: none
-  display: grid
-  gap: 0.3rem
 
 .item
   position: relative
   overflow: hidden
   color: hsl(var(--on-surface-hsl))
 
-  padding: 0.5rem
-
-  border-radius: var(--medium-shape)
+  padding: 0.7rem 1rem
 
   display: grid
   grid-template-columns: auto 1fr
@@ -22,7 +21,7 @@
 
   &._notReaded
     grid-template-columns: auto 1fr auto
-    // background-color: hsl(var(--primary-container-lowest-hsl))
+    background-color: hsl(var(--primary-container-lowest-hsl))
 
     &::after
       content: ""

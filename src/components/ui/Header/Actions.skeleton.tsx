@@ -5,7 +5,7 @@ const LoadingSkeleton: React.FC = () => {
     <>
       <Skeleton width={45} height={45} circle />
       <Skeleton width={45} height={45} circle />
-      <Skeleton width={200} height={45} borderRadius="var(--large-shape)" />
+      <Skeleton width={45} height={45} circle />
     </>
   )
 }

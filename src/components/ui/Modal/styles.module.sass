@@ -26,7 +26,7 @@
     visibility: visible
 
 .root
-  --_padding-inline: 1.5rem
+  --_padding-inline: 1.2rem
 
   position: absolute
   inset: 0
@@ -50,7 +50,6 @@
   &Wrapper
     display: grid
     grid-template-rows: auto 1fr
-    gap: 0.2rem
 
     background-color: hsl(var(--surface-container-hsl))
     border-radius: var(--medium-shape)
@@ -63,7 +62,7 @@
 
     overflow: hidden
 
-    padding-bottom: 1rem
+    // padding-bottom: 1rem
 
     transition: transform 200ms ease-in-out
 
@@ -74,7 +73,7 @@
     .rootWrapper
       transform: translate(10rem, 0) scale(1)
 
-      max-width: 50rem
+      max-width: 80rem
       height: 100%
 
     &._leftPos
@@ -114,7 +113,7 @@
   flex-shrink: 0
 
 .content
-  padding: 0.8rem var(--_padding-inline)
+  padding: 1rem var(--_padding-inline)
   overflow: auto
 
 .footer
@@ -123,4 +122,5 @@
   justify-content: flex-end
   gap: 1rem
 
+  padding-block: 0.5rem 1rem
   padding-inline: 1.5rem

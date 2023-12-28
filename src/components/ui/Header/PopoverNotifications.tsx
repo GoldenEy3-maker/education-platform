@@ -140,6 +140,7 @@ const PopoverNotifications: React.FC = () => {
               isActive={activeTab === null}
               onChange={() => setActiveTab(null)}
               name="notification-tabs"
+              counter={getNotificationsBySessionQuery.data?.length}
             />
             {Object.keys(tableNotificationTabLabelByType).map((key) => (
               <Tabs.Item
@@ -151,6 +152,12 @@ const PopoverNotifications: React.FC = () => {
                 name="notification-tabs"
                 isActive={activeTab === (key as NotificationTypeMap)}
                 onChange={() => setActiveTab(key as NotificationTypeMap)}
+                counter={
+                  getNotificationsBySessionQuery.data?.filter(
+                    (notification) =>
+                      notification.type === (key as NotificationTypeMap)
+                  ).length
+                }
               />
             ))}
           </Tabs.Track>

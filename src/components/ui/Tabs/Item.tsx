@@ -8,6 +8,7 @@ type ItemProps = {
   label: string
   isActive: boolean
   name: string
+  counter?: number
 } & React.ComponentProps<"input">
 
 export const Item: React.FC<ItemProps> = ({
@@ -15,6 +16,7 @@ export const Item: React.FC<ItemProps> = ({
   id,
   label,
   isActive,
+  counter,
   ...props
 }) => {
   const rippleEffectEvent = useRippleEffect()
@@ -64,6 +66,9 @@ export const Item: React.FC<ItemProps> = ({
       <input {...props} type="radio" id={id} onChange={changeHandler} />
       <label onPointerDown={rippleEffectEvent} htmlFor={id}>
         {label}
+        {counter ? (
+          <span className={styles.counter}>{Math.min(counter, 99)}</span>
+        ) : null}
       </label>
     </div>
   )

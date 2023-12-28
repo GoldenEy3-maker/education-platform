@@ -3,10 +3,57 @@
 
 .content
   display: grid
-  grid-template-columns: auto 1fr
+  grid-template-columns: 23rem 1fr
+  padding: 0
 
 .usersList
   list-style: none
-  display: flex
-  flex-direction: column
-  gap: 0.3rem
+  display: grid
+
+.user
+  button
+    width: 100%
+    display: grid
+    column-gap: 0.8rem
+    row-gap: 0
+    grid-template-columns: [avatar-start] auto [avatar-end content-start] 1fr [content-end time-start] auto [time-end]
+    grid-template-rows: auto auto
+    place-items: start
+    border-radius: 0
+
+  &Avatar
+    grid-column: avatar
+    grid-row: span 2
+
+    font-size: 1.3rem
+
+    width: 3.2rem
+    height: 3.2rem
+
+  &Credentials
+    grid-column: content
+
+    width: 100%
+    text-align: left
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
+
+  &LastMessage
+    grid-column: content / time
+    grid-row: 2
+    text-align: left
+
+    width: 100%
+
+    overflow: hidden
+    white-space: nowrap
+    text-overflow: ellipsis
+
+.time
+  grid-column: time
+  color: hsl(var(--on-surface-variant-hsl))
+
+.sidebar
+  overflow: hidden auto
+  border-right: 1px solid hsl(var(--outline-variant-hsl))
