@@ -23,6 +23,9 @@ model User {
   patronymic String?
   avatar     String?
 
+  online     Boolean   @default(false)
+  lastOnline DateTime?
+
   role Role
 
   courses Course[]

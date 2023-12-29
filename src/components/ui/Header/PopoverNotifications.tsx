@@ -51,6 +51,8 @@ const PopoverNotifications: React.FC = () => {
 
   const togglePopoverHandler = () => setIsPopoverOpen((prevState) => !prevState)
 
+  const getAllUsersQuery = api.user.getAll.useQuery()
+
   const getNotificationsBySessionQuery =
     api.notification.getBySession.useQuery()
 

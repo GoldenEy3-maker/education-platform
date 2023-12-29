@@ -6,14 +6,15 @@ import { ZodError } from "zod"
 import tokenService from "../../services/token.service"
 import { db } from "../db"
 import ApiError from "../exeptions"
-import { redis } from "../redis"
+import { pub, sub } from "../redis"
 
 type CreateContextOptions = Record<string, never>
 
 const createInnerTRPCContext = (_opts?: CreateContextOptions) => {
   return {
     db,
-    redis,
+    sub,
+    pub,
   }
 }
 

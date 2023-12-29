@@ -1,4 +1,5 @@
 import Button from "~/components/ui/Button"
+import { IconPlus } from "~/components/ui/Icons"
 import Modal from "~/components/ui/Modal"
 import UserAvatar from "~/components/ui/UserAvatar"
 import { useModalStore } from "~/store/modal"
@@ -24,168 +25,173 @@ const ChatModal: React.FC = () => {
       <Modal.Content className={styles.content}>
         <div className={styles.sidebar}>
           {!getAllUsersQuery.isLoading ? (
-            <ul className={styles.usersList}>
-              {/* {getAllUsersQuery.data?.map((user) => (
+            <>
+              <ul className={styles.usersList}>
+                {/* {getAllUsersQuery.data?.map((user) => (
                 <li key={user.id} className={styles.user}>
                   <Button>
                     {user.surname} {user.name}
                   </Button>
                 </li>
               ))} */}
-              <li className={styles.user}>
-                <Button color="default">
-                  <UserAvatar className={styles.userAvatar} />
-                  <strong className={styles.userCredentials}>
-                    Иванов Иван
-                  </strong>
-                  <time dateTime="" className={styles.time}>
-                    20:00
-                  </time>
-                  <p className={styles.userLastMessage}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Quam corrupti illum iusto error voluptatum cupiditate
-                    perferendis earum dignissimos nemo iste dolore ex mollitia,
-                    quas distinctio quo aut maxime eos minima.
-                  </p>
-                </Button>
-              </li>
-              <li className={styles.user}>
-                <Button color="default">
-                  <UserAvatar className={styles.userAvatar} />
-                  <strong className={styles.userCredentials}>
-                    Королев Данил
-                  </strong>
-                  <time dateTime="" className={styles.time}>
-                    20:00
-                  </time>
-                  <p className={styles.userLastMessage}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Quam corrupti illum iusto error voluptatum cupiditate
-                    perferendis earum dignissimos nemo iste dolore ex mollitia,
-                    quas distinctio quo aut maxime eos minima.
-                  </p>
-                </Button>
-              </li>
-              <li className={styles.user}>
-                <Button color="default">
-                  <UserAvatar className={styles.userAvatar} />
-                  <strong className={styles.userCredentials}>
-                    Дмитриева Анастасия
-                  </strong>
-                  <time dateTime="" className={styles.time}>
-                    20:00
-                  </time>
-                  <p className={styles.userLastMessage}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Quam corrupti illum iusto error voluptatum cupiditate
-                    perferendis earum dignissimos nemo iste dolore ex mollitia,
-                    quas distinctio quo aut maxime eos minima.
-                  </p>
-                </Button>
-              </li>
-              <li className={styles.user}>
-                <Button color="default">
-                  <UserAvatar className={styles.userAvatar} />
-                  <strong className={styles.userCredentials}>
-                    Гэхтерштермэгэбэкова Иван
-                  </strong>
-                  <time dateTime="" className={styles.time}>
-                    20:00
-                  </time>
-                  <p className={styles.userLastMessage}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Quam corrupti illum iusto error voluptatum cupiditate
-                    perferendis earum dignissimos nemo iste dolore ex mollitia,
-                    quas distinctio quo aut maxime eos minima.
-                  </p>
-                </Button>
-              </li>
-              <li className={styles.user}>
-                <Button color="default">
-                  <UserAvatar className={styles.userAvatar} />
-                  <strong className={styles.userCredentials}>
-                    Иванов Иван
-                  </strong>
-                  <time dateTime="" className={styles.time}>
-                    20:00
-                  </time>
-                  <p className={styles.userLastMessage}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Quam corrupti illum iusto error voluptatum cupiditate
-                    perferendis earum dignissimos nemo iste dolore ex mollitia,
-                    quas distinctio quo aut maxime eos minima.
-                  </p>
-                </Button>
-              </li>
-              <li className={styles.user}>
-                <Button color="default">
-                  <UserAvatar className={styles.userAvatar} />
-                  <strong className={styles.userCredentials}>
-                    Иванов Иван
-                  </strong>
-                  <time dateTime="" className={styles.time}>
-                    20:00
-                  </time>
-                  <p className={styles.userLastMessage}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Quam corrupti illum iusto error voluptatum cupiditate
-                    perferendis earum dignissimos nemo iste dolore ex mollitia,
-                    quas distinctio quo aut maxime eos minima.
-                  </p>
-                </Button>
-              </li>
-              <li className={styles.user}>
-                <Button color="default">
-                  <UserAvatar className={styles.userAvatar} />
-                  <strong className={styles.userCredentials}>
-                    Иванов Иван
-                  </strong>
-                  <time dateTime="" className={styles.time}>
-                    20:00
-                  </time>
-                  <p className={styles.userLastMessage}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Quam corrupti illum iusto error voluptatum cupiditate
-                    perferendis earum dignissimos nemo iste dolore ex mollitia,
-                    quas distinctio quo aut maxime eos minima.
-                  </p>
-                </Button>
-              </li>
-              <li className={styles.user}>
-                <Button color="default">
-                  <UserAvatar className={styles.userAvatar} />
-                  <strong className={styles.userCredentials}>
-                    Иванов Иван
-                  </strong>
-                  <time dateTime="" className={styles.time}>
-                    20:00
-                  </time>
-                  <p className={styles.userLastMessage}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Quam corrupti illum iusto error voluptatum cupiditate
-                    perferendis earum dignissimos nemo iste dolore ex mollitia,
-                    quas distinctio quo aut maxime eos minima.
-                  </p>
-                </Button>
-              </li>
-              <li className={styles.user}>
-                <Button color="default">
-                  <UserAvatar className={styles.userAvatar} />
-                  <strong className={styles.userCredentials}>
-                    Иванов Иван
-                  </strong>
-                  <time dateTime="" className={styles.time}>
-                    20:00
-                  </time>
-                  <p className={styles.userLastMessage}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Quam corrupti illum iusto error voluptatum cupiditate
-                    perferendis earum dignissimos nemo iste dolore ex mollitia,
-                    quas distinctio quo aut maxime eos minima.
-                  </p>
-                </Button>
-              </li>
-            </ul>
+                <li className={styles.user}>
+                  <Button color="default">
+                    <UserAvatar className={styles.userAvatar} />
+                    <strong className={styles.userCredentials}>
+                      Иванов Иван
+                    </strong>
+                    <time dateTime="" className={styles.time}>
+                      20:00
+                    </time>
+                    <p className={styles.userLastMessage}>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Quam corrupti illum iusto error voluptatum cupiditate
+                      perferendis earum dignissimos nemo iste dolore ex
+                      mollitia, quas distinctio quo aut maxime eos minima.
+                    </p>
+                  </Button>
+                </li>
+                <li className={styles.user}>
+                  <Button color="default">
+                    <UserAvatar className={styles.userAvatar} />
+                    <strong className={styles.userCredentials}>
+                      Королев Данил
+                    </strong>
+                    <time dateTime="" className={styles.time}>
+                      20:00
+                    </time>
+                    <p className={styles.userLastMessage}>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Quam corrupti illum iusto error voluptatum cupiditate
+                      perferendis earum dignissimos nemo iste dolore ex
+                      mollitia, quas distinctio quo aut maxime eos minima.
+                    </p>
+                  </Button>
+                </li>
+                <li className={styles.user}>
+                  <Button color="default">
+                    <UserAvatar className={styles.userAvatar} />
+                    <strong className={styles.userCredentials}>
+                      Дмитриева Анастасия
+                    </strong>
+                    <time dateTime="" className={styles.time}>
+                      20:00
+                    </time>
+                    <p className={styles.userLastMessage}>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Quam corrupti illum iusto error voluptatum cupiditate
+                      perferendis earum dignissimos nemo iste dolore ex
+                      mollitia, quas distinctio quo aut maxime eos minima.
+                    </p>
+                  </Button>
+                </li>
+                <li className={styles.user}>
+                  <Button color="default">
+                    <UserAvatar className={styles.userAvatar} />
+                    <strong className={styles.userCredentials}>
+                      Гэхтерштермэгэбэкова Иван
+                    </strong>
+                    <time dateTime="" className={styles.time}>
+                      20:00
+                    </time>
+                    <p className={styles.userLastMessage}>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Quam corrupti illum iusto error voluptatum cupiditate
+                      perferendis earum dignissimos nemo iste dolore ex
+                      mollitia, quas distinctio quo aut maxime eos minima.
+                    </p>
+                  </Button>
+                </li>
+                <li className={styles.user}>
+                  <Button color="default">
+                    <UserAvatar className={styles.userAvatar} />
+                    <strong className={styles.userCredentials}>
+                      Иванов Иван
+                    </strong>
+                    <time dateTime="" className={styles.time}>
+                      20:00
+                    </time>
+                    <p className={styles.userLastMessage}>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Quam corrupti illum iusto error voluptatum cupiditate
+                      perferendis earum dignissimos nemo iste dolore ex
+                      mollitia, quas distinctio quo aut maxime eos minima.
+                    </p>
+                  </Button>
+                </li>
+                <li className={styles.user}>
+                  <Button color="default">
+                    <UserAvatar className={styles.userAvatar} />
+                    <strong className={styles.userCredentials}>
+                      Иванов Иван
+                    </strong>
+                    <time dateTime="" className={styles.time}>
+                      20:00
+                    </time>
+                    <p className={styles.userLastMessage}>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Quam corrupti illum iusto error voluptatum cupiditate
+                      perferendis earum dignissimos nemo iste dolore ex
+                      mollitia, quas distinctio quo aut maxime eos minima.
+                    </p>
+                  </Button>
+                </li>
+                <li className={styles.user}>
+                  <Button color="default">
+                    <UserAvatar className={styles.userAvatar} />
+                    <strong className={styles.userCredentials}>
+                      Иванов Иван
+                    </strong>
+                    <time dateTime="" className={styles.time}>
+                      20:00
+                    </time>
+                    <p className={styles.userLastMessage}>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Quam corrupti illum iusto error voluptatum cupiditate
+                      perferendis earum dignissimos nemo iste dolore ex
+                      mollitia, quas distinctio quo aut maxime eos minima.
+                    </p>
+                  </Button>
+                </li>
+                <li className={styles.user}>
+                  <Button color="default">
+                    <UserAvatar className={styles.userAvatar} />
+                    <strong className={styles.userCredentials}>
+                      Иванов Иван
+                    </strong>
+                    <time dateTime="" className={styles.time}>
+                      20:00
+                    </time>
+                    <p className={styles.userLastMessage}>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Quam corrupti illum iusto error voluptatum cupiditate
+                      perferendis earum dignissimos nemo iste dolore ex
+                      mollitia, quas distinctio quo aut maxime eos minima.
+                    </p>
+                  </Button>
+                </li>
+                <li className={styles.user}>
+                  <Button color="default">
+                    <UserAvatar className={styles.userAvatar} />
+                    <strong className={styles.userCredentials}>
+                      Иванов Иван
+                    </strong>
+                    <time dateTime="" className={styles.time}>
+                      20:00
+                    </time>
+                    <p className={styles.userLastMessage}>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Quam corrupti illum iusto error voluptatum cupiditate
+                      perferendis earum dignissimos nemo iste dolore ex
+                      mollitia, quas distinctio quo aut maxime eos minima.
+                    </p>
+                  </Button>
+                </li>
+              </ul>
+              <Button className={styles.floatingButton} variant="filled" asIcon>
+                <IconPlus />
+              </Button>
+            </>
           ) : (
             <p>Загрузка</p>
           )}

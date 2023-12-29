@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Button from "~/components/ui/Button"
 import Checkbox from "~/components/ui/Checkbox"
 import {
@@ -15,6 +15,7 @@ import UserAvatar from "~/components/ui/UserAvatar"
 import { useLocalStorage } from "~/hooks/localStorage.hook"
 import { useModalStore } from "~/store/modal"
 import { useSessionStore } from "~/store/session"
+import { api } from "~/utils/api"
 import { LocalStorageKeyMap, ModalKeyMap, PagePathMap } from "~/utils/enums"
 import styles from "./PopoverProfile.module.sass"
 
@@ -31,6 +32,28 @@ const PopoverProfile: React.FC = () => {
     LocalStorageKeyMap.isDarkTheme,
     false
   )
+
+  const getAllUsersQuery = api.user.getAll.useQuery()
+
+  const connect = api.user.connect.useMutation()
+
+  api.user.onConnect.useSubscription(
+    {
+      userId: sessionStore.user?.id ?? null,
+    },
+    {
+      onData() {
+        void getAllUsersQuery.refetch()
+      },
+      onError(err) {
+        console.log("🚀 ~ file: PopoverProfile.tsx:47 ~ onError ~ err:", err)
+      },
+    }
+  )
+
+  useEffect(() => {
+    connect.mutate()
+  }, [])
 
   return (
     <Popover closeHandler={closePopoverHandler}>
