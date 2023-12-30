@@ -27,6 +27,7 @@ const MainLayout: React.FC<MainLayoutProps> = (props) => {
           <Header />
           <Sidebar />
           {props.children}
+          Pr
         </div>
         <Footer />
       </div>

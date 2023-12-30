@@ -28,7 +28,7 @@ class UserController {
   }
 
   connect() {
-    return authProcedure.mutation(async (opts) => {
+    return authProcedure.query(async (opts) => {
       await opts.ctx.pub.publish("users", JSON.stringify(opts.ctx.user))
 
       return opts.ctx.user
@@ -82,7 +82,9 @@ class UserController {
                   lastOnline: new Date(),
                 },
               })
-              .then((data) => data)
+              .then((data) =>
+                opts.ctx.pub.publish("users", JSON.stringify(data))
+              )
               .catch((err) => {
                 if (err instanceof PrismaClientKnownRequestError)
                   throw ApiError.PrismaError(err.message)

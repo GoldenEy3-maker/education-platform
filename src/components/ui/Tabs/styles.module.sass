@@ -31,6 +31,7 @@
     position: relative
     padding: 0.7rem 1.5rem
     user-select: none
+    color: hsl(var(--on-surface-variant-hsl))
 
   input
     position: absolute
@@ -46,6 +47,9 @@
     &:focus-visible + label
       color: hsl(var(--primary-hsl))
       background-color: hsl(var(--primary-container-hsl))
+
+    &:checked + label
+      color: hsl(var(--on-surface-hsl))
 
 .counter
   display: grid

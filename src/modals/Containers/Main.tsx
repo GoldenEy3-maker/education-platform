@@ -1,18 +1,25 @@
 import Modal from "~/components/ui/Modal"
-import ChatModal from "~/modals/Chat"
-import DeleteNotificationsModal from "~/modals/DeleteNotifications"
 import SidebarModal from "~/modals/Sidebar"
 import SignInModal from "~/modals/SignIn"
-import SignOutModal from "~/modals/SignOut"
+import { useSessionStore } from "~/store/session"
+import ChatModal from "../Chat"
+import DeleteNotificationsModal from "../DeleteNotifications"
+import SignOutModal from "../SignOut"
 
 const MainModalContainer: React.FC = () => {
+  const sessionStore = useSessionStore()
+
   return (
     <Modal.Container>
       <SidebarModal />
       <SignInModal />
-      <SignOutModal />
-      <ChatModal />
-      <DeleteNotificationsModal />
+      {sessionStore.user ? (
+        <>
+          <SignOutModal />
+          <ChatModal />
+          <DeleteNotificationsModal />
+        </>
+      ) : null}
     </Modal.Container>
   )
 }

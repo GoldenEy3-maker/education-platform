@@ -6,7 +6,6 @@ import styles from "./styles.module.sass"
 type ItemProps = {
   id: string
   label: string
-  isActive: boolean
   name: string
   counter?: number
 } & React.ComponentProps<"input">
@@ -15,7 +14,6 @@ export const Item: React.FC<ItemProps> = ({
   className,
   id,
   label,
-  isActive,
   counter,
   ...props
 }) => {
@@ -53,7 +51,7 @@ export const Item: React.FC<ItemProps> = ({
   }
 
   const initializeActiveItem = (node: HTMLDivElement | null) => {
-    if (node && isActive) {
+    if (node && props.checked) {
       const width = node.offsetWidth
 
       ctx.setActiveItemWidth(width / 2)

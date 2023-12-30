@@ -1,20 +1,46 @@
+import { useRef } from "react"
 import Button from "~/components/ui/Button"
-import { IconPlus } from "~/components/ui/Icons"
+import { IconPlus, IconSearch } from "~/components/ui/Icons"
+import Input from "~/components/ui/Input"
 import Modal from "~/components/ui/Modal"
 import UserAvatar from "~/components/ui/UserAvatar"
+import { useAutoFocus } from "~/hooks/autoFocus.hook"
 import { useModalStore } from "~/store/modal"
+import { useSessionStore } from "~/store/session"
 import { api } from "~/utils/api"
 import { ModalKeyMap } from "~/utils/enums"
 import styles from "./styles.module.sass"
 
 const ChatModal: React.FC = () => {
   const modalStore = useModalStore()
+  const sessionStore = useSessionStore()
+
+  const searchRef = useRef<HTMLInputElement>(null)
+
   const isModalOpen = modalStore.queue.at(-1) === ModalKeyMap.Chat
   const closeModalHandler = () => modalStore.close(ModalKeyMap.Chat)
 
   const getAllUsersQuery = api.user.getAll.useQuery(undefined, {
     enabled: isModalOpen,
   })
+
+  api.user.connect.useQuery()
+
+  api.user.onConnect.useSubscription(
+    {
+      userId: sessionStore.user?.id ?? null,
+    },
+    {
+      onData() {
+        void getAllUsersQuery.refetch()
+      },
+      onError(err) {
+        console.log("🚀 ~ file: PopoverProfile.tsx:47 ~ onError ~ err:", err)
+      },
+    }
+  )
+
+  useAutoFocus(searchRef, isModalOpen)
 
   return (
     <Modal isOpen={isModalOpen} asDrawer wrapperClassName={styles.modal}>
@@ -24,6 +50,13 @@ const ChatModal: React.FC = () => {
       </Modal.Header>
       <Modal.Content className={styles.content}>
         <div className={styles.sidebar}>
+          <div className={styles.sidebarHeader}>
+            <Input
+              placeholder="Поиск"
+              leadingIcon={<IconSearch />}
+              ref={searchRef}
+            />
+          </div>
           {!getAllUsersQuery.isLoading ? (
             <>
               <ul className={styles.usersList}>
@@ -188,13 +221,13 @@ const ChatModal: React.FC = () => {
                   </Button>
                 </li>
               </ul>
-              <Button className={styles.floatingButton} variant="filled" asIcon>
-                <IconPlus />
-              </Button>
             </>
           ) : (
             <p>Загрузка</p>
           )}
+          <Button className={styles.floatingButton} variant="filled" asIcon>
+            <IconPlus />
+          </Button>
         </div>
         <div className={styles.chat}></div>
       </Modal.Content>

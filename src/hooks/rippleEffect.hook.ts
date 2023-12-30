@@ -1,5 +1,5 @@
 export const useRippleEffect = () => {
-  const animationDuration = 400
+  const animationDuration = 500
   const minAnimationDuration = 200
 
   const rippleEffectEvent: React.PointerEventHandler<HTMLElement> = (event) => {

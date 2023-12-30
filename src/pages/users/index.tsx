@@ -44,7 +44,7 @@ const UsersPage: NextPageWithLayout = () => {
                   label={
                     tableTestTabLabel[key as keyof typeof tableTestTabLabel]
                   }
-                  isActive={activeTab === key}
+                  checked={activeTab === key}
                   onChange={() =>
                     setActiveTab(key as keyof typeof tableTestTabLabel)
                   }

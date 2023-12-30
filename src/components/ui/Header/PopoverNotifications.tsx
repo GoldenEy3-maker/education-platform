@@ -51,8 +51,6 @@ const PopoverNotifications: React.FC = () => {
 
   const togglePopoverHandler = () => setIsPopoverOpen((prevState) => !prevState)
 
-  const getAllUsersQuery = api.user.getAll.useQuery()
-
   const getNotificationsBySessionQuery =
     api.notification.getBySession.useQuery()
 
@@ -139,7 +137,7 @@ const PopoverNotifications: React.FC = () => {
             <Tabs.Item
               id="all"
               label="Все"
-              isActive={activeTab === null}
+              checked={activeTab === null}
               onChange={() => setActiveTab(null)}
               name="notification-tabs"
               counter={getNotificationsBySessionQuery.data?.length}
@@ -152,7 +150,7 @@ const PopoverNotifications: React.FC = () => {
                   tableNotificationTabLabelByType[key as NotificationTypeMap]
                 }
                 name="notification-tabs"
-                isActive={activeTab === (key as NotificationTypeMap)}
+                checked={activeTab === (key as NotificationTypeMap)}
                 onChange={() => setActiveTab(key as NotificationTypeMap)}
                 counter={
                   getNotificationsBySessionQuery.data?.filter(

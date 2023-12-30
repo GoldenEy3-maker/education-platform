@@ -8,7 +8,7 @@
 
 .usersList
   list-style: none
-  display: grid
+  overflow: hidden auto
 
 .user
   button
@@ -56,12 +56,18 @@
 
 .sidebar
   position: relative
-  overflow: hidden auto
+  display: grid
+  grid-template-rows: auto 1fr
+  overflow: hidden
   border-right: 1px solid hsl(var(--outline-variant-hsl))
+
+  &Header
+    padding: 1rem 1.5rem
 
 .floatingButton
   position: absolute
+  bottom: 1.5rem
+  right: 1.5rem
   z-index: 10
-  font-size: 1.3rem
-  bottom: 2rem
-  right: 2rem
+
+  font-size: 1.5rem
