@@ -30,11 +30,12 @@ const UsersPage: NextPageWithLayout = () => {
       toast.error(err.message)
     },
   })
+
   return (
-    <main className="content-grid">
+    <main className="container-grid">
       <Section>
         <Section.Title>Страница пользователей</Section.Title>
-        <Section.Content>
+        <Section.Body>
           <Tabs>
             <Tabs.Track>
               {Object.keys(tableTestTabLabel).map((key) => (
@@ -77,7 +78,7 @@ const UsersPage: NextPageWithLayout = () => {
               </li>
             ))}
           </ul>
-        </Section.Content>
+        </Section.Body>
       </Section>
     </main>
   )

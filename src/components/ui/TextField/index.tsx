@@ -2,14 +2,14 @@ import { forwardRef } from "react"
 import { cls } from "~/utils/func"
 import styles from "./styles.module.sass"
 
-type InputProps = {
+type TextFieldProps = {
   label?: string
   leadingIcon?: React.ReactNode
   size?: "sm"
   errorMessage?: string
 } & Omit<React.ComponentProps<"input">, "size">
 
-const Input = forwardRef<HTMLInputElement, InputProps>(
+const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
   ({ label, className, size, leadingIcon, errorMessage, ...props }, ref) => {
     return (
       <div
@@ -34,6 +34,6 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
   }
 )
 
-Input.displayName = "Input"
+TextField.displayName = "TextField"
 
-export default Input
+export default TextField

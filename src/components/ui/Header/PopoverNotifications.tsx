@@ -162,7 +162,7 @@ const PopoverNotifications: React.FC = () => {
             ))}
           </Tabs.Track>
         </Tabs>
-        <Popover.Content className={styles.content}>
+        <Popover.Body className={styles.content}>
           {(() => {
             if (getNotificationsBySessionQuery.isLoading)
               return <LoadingSkeleton />
@@ -246,7 +246,7 @@ const PopoverNotifications: React.FC = () => {
               </ul>
             )
           })()}
-        </Popover.Content>
+        </Popover.Body>
       </Popover.Wrapper>
     </Popover>
   )

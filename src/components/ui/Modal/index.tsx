@@ -1,7 +1,7 @@
 import { cls } from "~/utils/func"
+import { Body } from "./Body"
 import { Close } from "./Close"
 import { Container } from "./Container"
-import { Content } from "./Content"
 import { Footer } from "./Footer"
 import { Header } from "./Header"
 import { Title } from "./Title"
@@ -46,7 +46,7 @@ const Modal = ({
 
 Modal.Close = Close
 Modal.Container = Container
-Modal.Content = Content
+Modal.Body = Body
 Modal.Footer = Footer
 Modal.Title = Title
 Modal.Header = Header

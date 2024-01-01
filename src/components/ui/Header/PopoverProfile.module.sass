@@ -1,3 +1,6 @@
+.content
+  padding-inline: 0
+
 .trigger
   padding: 0.1rem 1rem
   font-size: var(--body-l-fs)
@@ -15,6 +18,8 @@
   display: grid
   grid-template-columns: [avatar-start] 3rem [avatar-end] 1.5rem [content-start] 1fr [content-end]
   grid-template-rows: auto auto
+
+  padding-inline: 1rem
 
   &Email
     grid-column: content
@@ -65,16 +70,17 @@
   &Link
     width: 100%
     gap: 1rem
-    border-radius: var(--small-shape)
-    padding-inline: 1.1rem
+    border-radius: 0
+    padding-inline: 2.1rem
 
     svg
       font-size: 1.3rem
 
 .themeController
+  --_label-gap: 1rem
+  --_border-radius: 0
+
   label
-    padding-inline: 1.1rem !important
-    gap: 1rem !important
 
     svg
       font-size: 1.3rem

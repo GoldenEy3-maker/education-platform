@@ -3,7 +3,7 @@ import { useDocEventListener } from "~/hooks/docEvent.hook"
 import { GlobalDatasetKeyMap } from "~/utils/enums"
 import { cls } from "~/utils/func"
 import { Actions } from "./Actions"
-import { Content } from "./Content"
+import { Body } from "./Body"
 import { Header } from "./Header"
 import { Title } from "./Title"
 import { Trigger } from "./Trigger"
@@ -59,7 +59,7 @@ const Popover = ({ closeHandler, isUseTabs, ...props }: PopoverProps) => {
 }
 
 Popover.Actions = Actions
-Popover.Content = Content
+Popover.Body = Body
 Popover.Header = Header
 Popover.Title = Title
 Popover.Trigger = Trigger

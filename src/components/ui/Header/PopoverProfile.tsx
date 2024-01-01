@@ -47,7 +47,7 @@ const PopoverProfile: React.FC = () => {
         </div>
       </Popover.Trigger>
       <Popover.Wrapper isOpen={isPopoverOpen}>
-        <Popover.Content>
+        <Popover.Body className={styles.content}>
           <div className={styles.profile}>
             <div className={styles.profileImg}>
               <UserAvatar src={sessionStore.user?.avatar} />
@@ -116,7 +116,7 @@ const PopoverProfile: React.FC = () => {
               <IconLogOut /> <span>Выход</span>
             </Button>
           </nav>
-        </Popover.Content>
+        </Popover.Body>
       </Popover.Wrapper>
     </Popover>
   )

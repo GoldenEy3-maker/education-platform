@@ -40,10 +40,10 @@ const DeleteNotificationsModal = () => {
         <Modal.Title>Удалить уведомления</Modal.Title>
         <Modal.Close onClick={closeModalHandler} />
       </Modal.Header>
-      <Modal.Content>
+      <Modal.Body>
         <p>Данные пропадут безвозвратно!</p>
         <p>Это действие нельзя будет отменить.</p>
-      </Modal.Content>
+      </Modal.Body>
       <Modal.Footer>
         <Button
           type="button"

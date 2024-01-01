@@ -12,7 +12,7 @@ import styles from "./styles.module.sass"
 
 const Footer: React.FC = () => {
   return (
-    <footer className={cls(styles.footer, "content-grid")}>
+    <footer className={cls(styles.footer, "container-grid")}>
       <header className={styles.header}>
         <div className={styles.symbols}>
           <span className={styles.logo}>

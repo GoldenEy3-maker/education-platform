@@ -9,8 +9,8 @@ import { BiLockAlt, BiUser } from "react-icons/bi"
 import Button from "~/components/ui/Button"
 import Checkbox from "~/components/ui/Checkbox"
 import Form from "~/components/ui/Form"
-import Input from "~/components/ui/Input"
 import Modal from "~/components/ui/Modal"
+import TextField from "~/components/ui/TextField"
 import { useAutoFocus } from "~/hooks/autoFocus.hook"
 import {
   authSignInInput,
@@ -36,7 +36,7 @@ const SignInModal: React.FC = () => {
       sessionStore.setToken(data.accessToken)
       sessionStore.setUser(data.user)
       closeModalHandler()
-      form.reset()
+      formHandler.reset()
     },
     onError(error) {
       console.error("🚀 ~ file: index.tsx:39 ~ onError ~ error:", error)
@@ -45,7 +45,7 @@ const SignInModal: React.FC = () => {
     },
   })
 
-  const form = useForm<AuthSignInInput>({
+  const formHandler = useForm<AuthSignInInput>({
     defaultValues: {
       login: "",
       password: "",
@@ -54,7 +54,7 @@ const SignInModal: React.FC = () => {
     resolver: zodResolver(authSignInInput),
   })
 
-  const submitFormHandler = form.handleSubmit((data) => {
+  const submitFormHandler = formHandler.handleSubmit((data) => {
     signIn.mutate(data)
   })
 
@@ -66,14 +66,14 @@ const SignInModal: React.FC = () => {
         <Modal.Title>Войти</Modal.Title>
         <Modal.Close onClick={closeModalHandler} />
       </Modal.Header>
-      <Modal.Content>
+      <Modal.Body>
         <Form id="sign-in-form" onSubmit={submitFormHandler}>
           <Form.Fieldset>
             <Controller
-              control={form.control}
+              control={formHandler.control}
               name="login"
               render={({ field }) => (
-                <Input
+                <TextField
                   type="text"
                   label="Логин"
                   id="login"
@@ -84,16 +84,16 @@ const SignInModal: React.FC = () => {
                   value={field.value}
                   ref={loginInputRef}
                   leadingIcon={<BiUser />}
-                  errorMessage={form.formState.errors.login?.message}
+                  errorMessage={formHandler.formState.errors.login?.message}
                   disabled={signIn.isLoading}
                 />
               )}
             />
             <Controller
-              control={form.control}
+              control={formHandler.control}
               name="password"
               render={({ field }) => (
-                <Input
+                <TextField
                   type="password"
                   label="Пароль"
                   id="password"
@@ -103,7 +103,7 @@ const SignInModal: React.FC = () => {
                   onBlur={field.onBlur}
                   value={field.value}
                   leadingIcon={<BiLockAlt />}
-                  errorMessage={form.formState.errors.password?.message}
+                  errorMessage={formHandler.formState.errors.password?.message}
                   disabled={signIn.isLoading}
                 />
               )}
@@ -111,7 +111,7 @@ const SignInModal: React.FC = () => {
           </Form.Fieldset>
           <Form.Fieldset>
             <Controller
-              control={form.control}
+              control={formHandler.control}
               name="rememberMe"
               render={({ field }) => (
                 <Checkbox
@@ -140,7 +140,7 @@ const SignInModal: React.FC = () => {
             Забыли логин или пароль?
           </Link>
         </Form>
-      </Modal.Content>
+      </Modal.Body>
       <Modal.Footer>
         <Button
           type="button"

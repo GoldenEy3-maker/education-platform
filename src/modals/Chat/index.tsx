@@ -1,8 +1,8 @@
 import { useRef } from "react"
 import Button from "~/components/ui/Button"
 import { IconPlus, IconSearch } from "~/components/ui/Icons"
-import Input from "~/components/ui/Input"
 import Modal from "~/components/ui/Modal"
+import TextField from "~/components/ui/TextField"
 import UserAvatar from "~/components/ui/UserAvatar"
 import { useAutoFocus } from "~/hooks/autoFocus.hook"
 import { useModalStore } from "~/store/modal"
@@ -48,10 +48,10 @@ const ChatModal: React.FC = () => {
         <Modal.Title>Сообщения</Modal.Title>
         <Modal.Close onClick={closeModalHandler} />
       </Modal.Header>
-      <Modal.Content className={styles.content}>
+      <Modal.Body className={styles.content}>
         <div className={styles.sidebar}>
           <div className={styles.sidebarHeader}>
-            <Input
+            <TextField
               placeholder="Поиск"
               leadingIcon={<IconSearch />}
               ref={searchRef}
@@ -230,7 +230,7 @@ const ChatModal: React.FC = () => {
           </Button>
         </div>
         <div className={styles.chat}></div>
-      </Modal.Content>
+      </Modal.Body>
     </Modal>
   )
 }

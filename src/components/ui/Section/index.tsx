@@ -1,5 +1,5 @@
 import { cls } from "~/utils/func"
-import { Content } from "./Content"
+import { Body } from "./Body"
 import { Group } from "./Group"
 import { Header } from "./Header"
 import { Title } from "./Title"
@@ -22,7 +22,7 @@ const Section = ({ isSpanGridArea, ...props }: SectionProps) => {
   )
 }
 
-Section.Content = Content
+Section.Body = Body
 Section.Group = Group
 Section.Header = Header
 Section.Title = Title

@@ -18,7 +18,7 @@ import styles from "./styles.module.sass"
 
 const HomePage: NextPageWithLayout = () => {
   return (
-    <main className={cls(styles.main, "content-grid")}>
+    <main className={cls(styles.main, "container-grid")}>
       <Welcome />
       <Section.Group>
         <Section isSpanGridArea>
@@ -30,9 +30,9 @@ const HomePage: NextPageWithLayout = () => {
               Посмотреть все <IconRightArrowAlt />
             </Link>
           </Section.Header>
-          <Section.Content>
+          <Section.Body>
             <CoursesFeed />
-          </Section.Content>
+          </Section.Body>
         </Section>
         <Section isSpanGridArea>
           <Section.Header>
@@ -49,9 +49,9 @@ const HomePage: NextPageWithLayout = () => {
               <IconRightArrowAlt />
             </Link>
           </Section.Header>
-          <Section.Content>
+          <Section.Body>
             <NewsFeed />
-          </Section.Content>
+          </Section.Body>
         </Section>
         <Section>
           <Section.Header>
@@ -59,15 +59,15 @@ const HomePage: NextPageWithLayout = () => {
               <IconCalendar /> Календарь
             </Section.Title>
           </Section.Header>
-          <Section.Content>
+          <Section.Body>
             <Calendar />
-          </Section.Content>
+          </Section.Body>
         </Section>
         <Section>
           <Section.Header>
             <Section.Title>Не знаешь с чего начать?</Section.Title>
           </Section.Header>
-          <Section.Content>
+          <Section.Body>
             <iframe
               className={styles.videoFrame}
               width="100%"
@@ -78,7 +78,7 @@ const HomePage: NextPageWithLayout = () => {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
             ></iframe>
-          </Section.Content>
+          </Section.Body>
         </Section>
       </Section.Group>
     </main>

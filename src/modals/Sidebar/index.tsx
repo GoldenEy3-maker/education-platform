@@ -25,9 +25,9 @@ const SidebarModal: React.FC = () => {
         />
         <Modal.Title>Цифровой университет АлтГУ</Modal.Title>
       </Modal.Header>
-      <Modal.Content>
+      <Modal.Body>
         <Sidebar isModal />
-      </Modal.Content>
+      </Modal.Body>
     </Modal>
   )
 }

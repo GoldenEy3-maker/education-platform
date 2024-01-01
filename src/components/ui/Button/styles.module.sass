@@ -1,4 +1,6 @@
 .btn
+  --_padding: 0.7rem 1.5rem
+
   position: relative
   overflow: hidden
 
@@ -8,7 +10,7 @@
 
   color: hsl(var(--primary-hsl))
 
-  padding: 0.7rem 1.5rem
+  padding: var(--_padding)
 
   border-radius: var(--full-shape)
 
@@ -16,7 +18,7 @@
     pointer-events: none
 
   &._sm
-    padding: 0.5rem 1rem
+    --_padding: 0.5rem 1rem
 
   &._textAlignCenter
     justify-content: center
@@ -25,7 +27,7 @@
     justify-content: flex-end
 
   &._asIcon
-    padding: 0.7rem
+    --_padding: 0.7rem
 
   &._dangerClr
     --ripple-hsl: var(--danger-hsl)

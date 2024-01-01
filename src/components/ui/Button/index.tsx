@@ -37,20 +37,24 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         {...props}
-        className={cls(styles.btn, props.className, {
-          [styles._filled ?? ""]: variant === "filled",
-          [styles._elevated ?? ""]: variant === "elevated",
-          [styles._outlined ?? ""]: variant === "outlined",
-          [styles._asIcon ?? ""]: asIcon!,
-          [styles._dangerClr ?? ""]: color === "danger",
-          [styles._successClr ?? ""]: color === "success",
-          [styles._defaultClr ?? ""]: color === "default",
-          [styles._textAlignCenter ?? ""]: textAlign === "center",
-          [styles._textAlignRight ?? ""]: textAlign === "right",
-          [styles._sm ?? ""]: size === "sm",
-          [styles._isActive ?? ""]: !!isActive,
-          [styles._loading ?? ""]: !!isLoading,
-        })}
+        className={cls(
+          styles.btn,
+          {
+            [styles._filled ?? ""]: variant === "filled",
+            [styles._elevated ?? ""]: variant === "elevated",
+            [styles._outlined ?? ""]: variant === "outlined",
+            [styles._asIcon ?? ""]: asIcon!,
+            [styles._dangerClr ?? ""]: color === "danger",
+            [styles._successClr ?? ""]: color === "success",
+            [styles._defaultClr ?? ""]: color === "default",
+            [styles._textAlignCenter ?? ""]: textAlign === "center",
+            [styles._textAlignRight ?? ""]: textAlign === "right",
+            [styles._sm ?? ""]: size === "sm",
+            [styles._isActive ?? ""]: !!isActive,
+            [styles._loading ?? ""]: !!isLoading,
+          },
+          props.className
+        )}
         onPointerDown={rippleEffectEvent}
         ref={ref}
         disabled={isLoading || props.disabled}

@@ -39,10 +39,10 @@ const SignOutModal: React.FC = () => {
         <Modal.Title>Вы действительно хотите выйти?</Modal.Title>
         <Modal.Close onClick={closeModalHandler} />
       </Modal.Header>
-      <Modal.Content>
+      <Modal.Body>
         Вы можете покинуть этот аккаунт. После чего перейдете в режим гостя, в
         котором ограничен доступ ко многим элементам портала.
-      </Modal.Content>
+      </Modal.Body>
       <Modal.Footer>
         <Button
           type="button"

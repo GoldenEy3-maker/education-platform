@@ -1,8 +1,8 @@
 import { forwardRef } from "react"
-import { BiCheck, BiMinus } from "react-icons/bi"
 import { useRippleEffect } from "~/hooks/rippleEffect.hook"
 import { cls } from "~/utils/func"
 import Button from "../Button"
+import { IconCheck, IconMinus } from "../Icons"
 import styles from "./styles.module.sass"
 
 export type ExtendedCheckboxValue = "on" | "off" | undefined
@@ -39,17 +39,17 @@ type CheckboxProps =
     } & CheckboxBaseProps)
 
 const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
-  ({ label, leadingIcon, controllerPosition, ...props }, ref) => {
+  ({ label, leadingIcon, controllerPosition, className, ...props }, ref) => {
     const rippleEffectEvent = useRippleEffect()
 
     const renderCheckboxIcon = () => {
       if (props.type === "check") {
-        return props.checked ? <BiCheck /> : null
+        return props.checked ? <IconCheck /> : null
       }
 
       if (props.type === "extended-check") {
-        if (props.value === "on") return <BiCheck />
-        if (props.value === "off") return <BiMinus />
+        if (props.value === "on") return <IconCheck />
+        if (props.value === "off") return <IconMinus />
       }
 
       return null
@@ -68,9 +68,11 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         case "on":
           value = "off"
           checked = true
+          break
         case "off":
           value = undefined
           checked = false
+          break
         default:
           value = "on"
           checked = true
@@ -81,10 +83,14 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
 
     return (
       <div
-        className={cls(styles.root, props.className, {
-          [styles._controllerRight ?? ""]: controllerPosition === "right",
-          [styles._switchController ?? ""]: props.type === "switch",
-        })}
+        className={cls(
+          styles.root,
+          {
+            [styles._controllerRight ?? ""]: controllerPosition === "right",
+            [styles._switchController ?? ""]: props.type === "switch",
+          },
+          className
+        )}
       >
         <input {...props} type="checkbox" onChange={changeHandler} ref={ref} />
         <div

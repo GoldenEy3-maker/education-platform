@@ -6,20 +6,20 @@
   display: grid
   grid-template-columns: auto 1fr
 
-.content-grid
+.container-grid
   --padding-inline: 1rem
-  --content-max-widht: 150ch
+  --container-max-widht: 150ch
   --breakout-max-width: 160ch
 
-  --breakout-size: calc((var(--breakout-max-width) - var(--content-max-widht)) / 2)
+  --breakout-size: calc((var(--breakout-max-width) - var(--container-max-widht)) / 2)
 
   display: grid
-  grid-template-columns: [full-width-start] minmax(var(--padding-inline), 1fr) [breakout-start] minmax(0, var(--breakout-size)) [content-start] min(100% - var(--padding-inline) * 2, var(--content-max-widht)) [content-end] minmax(0, var(--breakout-size)) [breakout-end] minmax(var(--padding-inline), 1fr) [full-width-end]
+  grid-template-columns: [full-width-start] minmax(var(--padding-inline), 1fr) [breakout-start] minmax(0, var(--breakout-size)) [container-start] min(100% - var(--padding-inline) * 2, var(--container-max-widht)) [container-end] minmax(0, var(--breakout-size)) [breakout-end] minmax(var(--padding-inline), 1fr) [full-width-end]
 
   padding-block: var(--safe-padding)
 
-.content-grid > :not(.breakout, .full-width), .full-width > :not(.breakout, .full-width)
-  grid-column: content
+.container-grid > :not(.breakout, .full-width), .full-width > :not(.breakout, .full-width)
+  grid-column: container
 
 .breakout
   grid-column: breakout
