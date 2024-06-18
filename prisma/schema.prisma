@@ -1,0 +1,250 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model User {
+  id              String               @id @default(cuid())
+  surname         String
+  name            String
+  fathername      String?
+  email           String?              @unique
+  emailVerified   DateTime?            @map("email_verified")
+  bgImage         String?
+  image           String?
+  login           String               @unique
+  password        String
+  group           Group?               @relation(fields: [groupId], references: [id])
+  groupId         String?
+  role            Role
+  status          String?
+  lessions        Lession[]
+  createdCourses  Course[]             @relation("author")
+  subscriptions   Subscription[]
+  favorites       Favorite[]
+  attempts        Attempt[]
+  sessions        Session[]
+  strictViewTasks StrictViewTaskUser[]
+
+  @@map("users")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique @map("session_token")
+  userId       String   @map("user_id")
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model Group {
+  id              String                @id @default(cuid())
+  name            String
+  user            User[]
+  lessions        Lession[]
+  strictViewTasks StrictViewTaskGroup[]
+
+  @@map("groups")
+}
+
+model Pavilion {
+  id       String    @id @default(cuid())
+  name     String
+  address  String
+  infoLink String    @map("info_link")
+  mapLink  String    @map("map_link")
+  lessions Lession[]
+
+  @@map("pavilions")
+}
+
+model Lession {
+  id         String        @id @default(cuid())
+  title      String
+  start      DateTime
+  end        DateTime
+  classRoom  Int?          @map("classroom")
+  pavilion   Pavilion?     @relation(fields: [pavilionId], references: [id])
+  pavilionId String?       @map("pavilion_id")
+  type       LessionType
+  teacher    User          @relation(fields: [teacherId], references: [id])
+  teacherId  String        @map("teacher_id")
+  group      Group         @relation(fields: [groupId], references: [id])
+  groupId    String        @map("group_id")
+  status     LessionStatus
+
+  @@map("lessions")
+}
+
+model Course {
+  id            String             @id @default(cuid())
+  image         String
+  fullTitle     String
+  shortTitle    String?
+  description   String?
+  author        User               @relation("author", fields: [authorId], references: [id])
+  authorId      String             @map("author_id")
+  subscribers   Subscription[]
+  favoritedBy   Favorite[]
+  isArchived    Boolean            @default(false) @map("is_archived")
+  attachments   CourseAttachment[]
+  tasks         Task[]
+  announcements Announcement[]
+  createdAt     DateTime           @default(now()) @map("created_at")
+  updatedAt     DateTime           @updatedAt @map("updated_at")
+
+  @@map("courses")
+}
+
+model CourseAttachment {
+  id         String   @id @default(cuid())
+  name       String
+  key        String?
+  url        String
+  size       Int?
+  course     Course   @relation(fields: [courseId], references: [id])
+  courseId   String   @map("course_id")
+  uploadedAt DateTime @map("updated_at")
+
+  @@map("course_attachments")
+}
+
+model Task {
+  id                String                @id @default(cuid())
+  title             String
+  section           String
+  type              TaskType
+  content           String
+  availableAttempts Int?                  @map("available_attempts")
+  attachments       TaskAttachment[]
+  availableTime     Int?                  @map("available_time")
+  deadline          DateTime?
+  isHidden          Boolean               @default(false) @map("is_hidden")
+  attempts          Attempt[]
+  course            Course                @relation(fields: [courseId], references: [id])
+  courseId          String                @map("course_id")
+  createdAt         DateTime              @default(now()) @map("created_at")
+  updatedAt         DateTime              @updatedAt @map("updated_at")
+  strictViewUsers   StrictViewTaskUser[]
+  strictViewGroups  StrictViewTaskGroup[]
+
+  @@map("tasks")
+}
+
+model TaskAttachment {
+  id         String   @id @default(cuid())
+  name       String
+  key        String?
+  url        String
+  size       Int?
+  task       Task     @relation(fields: [taskId], references: [id])
+  taskId     String   @map("task_id")
+  uploadedAt DateTime
+
+  @@map("task_attachments")
+}
+
+model Attempt {
+  id          String    @id @default(cuid())
+  user        User      @relation(fields: [userId], references: [id])
+  userId      String    @map("user_id")
+  task        Task      @relation(fields: [taskId], references: [id])
+  taskId      String    @map("task_id")
+  startedAt   DateTime  @default(now()) @map("started_at")
+  completedAt DateTime? @map("completed_at")
+
+  @@map("attempts")
+}
+
+model Announcement {
+  id          String                   @id @default(cuid())
+  title       String
+  text        String
+  attachments AnnouncementAttachment[]
+  course      Course                   @relation(fields: [courseId], references: [id])
+  courseId    String                   @map("course_id")
+  createdAt   DateTime                 @default(now()) @map("created_at")
+
+  @@map("announcements")
+}
+
+model AnnouncementAttachment {
+  id             String       @id @default(cuid())
+  name           String
+  key            String?
+  url            String
+  size           Int?
+  announcement   Announcement @relation(fields: [announcementId], references: [id])
+  announcementId String       @map("announcement_id")
+  uploadedAt     DateTime
+
+  @@map("announcement_attachments")
+}
+
+model Subscription {
+  id       String @id @default(cuid())
+  course   Course @relation(fields: [courseId], references: [id])
+  courseId String @map("course_id")
+  progress Int
+  user     User   @relation(fields: [userId], references: [id])
+  userId   String @map("user_id")
+
+  @@map("subscriptions")
+}
+
+model Favorite {
+  id       String @id @default(cuid())
+  course   Course @relation(fields: [courseId], references: [id])
+  courseId String @map("course_id")
+  user     User   @relation(fields: [userId], references: [id])
+  userId   String @map("user_id")
+
+  @@map("favorites")
+}
+
+model StrictViewTaskUser {
+  id     String @id @default(cuid())
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @map("user_id")
+  task   Task   @relation(fields: [taskId], references: [id])
+  taskId String @map("task_id")
+}
+
+model StrictViewTaskGroup {
+  id      String @id @default(cuid())
+  group   Group  @relation(fields: [groupId], references: [id])
+  groupId String @map("group_id")
+  task    Task   @relation(fields: [taskId], references: [id])
+  taskId  String @map("task_id")
+}
+
+enum Role {
+  Student
+  Admin
+  Teacher
+}
+
+enum LessionStatus {
+  Full
+  Sync
+  Async
+}
+
+enum LessionType {
+  Lec
+  Lab
+  Pract
+}
+
+enum TaskType {
+  Lec
+  Quiz
+  Pract
+}
