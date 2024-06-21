@@ -9,7 +9,7 @@ export default function Home() {
   const { session, isSessionLoading } = useSession();
 
   return (
-    <main>
+    <main className="container-grid py-4">
       <h1>HomePage</h1>
       <ThemeToggle />
       <nav>

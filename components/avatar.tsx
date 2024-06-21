@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { AvatarFallback, AvatarImage, Avatar as AvatarRoot } from "./ui/avatar";
 
 type AvatarProps = {
-  fallback: string;
+  fallback?: string;
   src?: string | null;
   className?: string;
   isOnline?: boolean;

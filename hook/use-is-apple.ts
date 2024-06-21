@@ -2,11 +2,11 @@ import { useState } from "react";
 import { useIsomorphicLayoutEffect } from "usehooks-ts";
 
 export function useIsApple() {
-  const [isMac, setIsMac] = useState(false);
+  const [isApple, setIsApple] = useState(false);
 
   useIsomorphicLayoutEffect(() => {
-    setIsMac(/(Mac|iPhone|iPod|iPad)/i.test(navigator.userAgent));
+    setIsApple(/(Mac|iPhone|iPod|iPad)/i.test(navigator.userAgent));
   }, []);
 
-  return { isMac };
+  return isApple;
 }

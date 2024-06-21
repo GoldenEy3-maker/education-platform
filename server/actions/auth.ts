@@ -8,6 +8,27 @@ import { CookiesMap, RoutesMap } from "@/lib/enums";
 import { createServerAction } from "zsa";
 import { redirect } from "next/navigation";
 import { protectedProcedure } from "./procedures";
+import { Prisma } from "@prisma/client";
+
+export type SessionUser = Prisma.UserGetPayload<{
+  select: {
+    id: true;
+    surname: true;
+    name: true;
+    fathername: true;
+    email: true;
+    group: {
+      select: {
+        id: true;
+        name: true;
+      };
+    };
+    bgImage: true;
+    image: true;
+    role: true;
+    status: true;
+  };
+}>;
 
 export const signIn = createServerAction()
   .input(z.object({ login: z.string(), password: z.string() }))
