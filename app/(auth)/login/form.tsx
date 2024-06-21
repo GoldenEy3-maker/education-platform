@@ -98,7 +98,7 @@ export function LoginForm() {
         />
         <footer className="flex items-center justify-between gap-2">
           <Button asChild variant="link" disabled={form.formState.isSubmitting}>
-            <Link href="#">Забыли пароль?</Link>
+            <Link href={RoutesMap.RestorePassword}>Забыли пароль?</Link>
           </Button>
           <Button
             disabled={form.formState.isSubmitting}

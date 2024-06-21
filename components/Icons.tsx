@@ -31,4 +31,5 @@ export const Icons = {
   Moon: TbMoon,
   Sub: TbSun,
   ArrowLeft: TbArrowLeft,
+  ArrowRight: TbArrowRight,
 };
