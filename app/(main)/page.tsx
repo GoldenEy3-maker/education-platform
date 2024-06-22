@@ -1,13 +1,10 @@
-"use client";
-
-import { useSession } from "@/components/session-provider";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { RoutesMap } from "@/lib/enums";
 import Link from "next/link";
+import { Test } from "./test";
+import { Suspense } from "react";
 
 export default function Home() {
-  const { session, isSessionLoading } = useSession();
-
   return (
     <main className="container-grid py-4">
       <h1>HomePage</h1>
@@ -15,11 +12,9 @@ export default function Home() {
       <nav>
         <Link href={RoutesMap.Login}>Login</Link>
       </nav>
-      {!isSessionLoading ? (
-        <pre>{JSON.stringify(session, null, 2)}</pre>
-      ) : (
-        <p>Loading...</p>
-      )}
+      <Suspense fallback={<p>Loading...</p>}>
+        <Test />
+      </Suspense>
     </main>
   );
 }

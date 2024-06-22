@@ -14,21 +14,11 @@ import {
   CommandList,
   CommandSeparator,
 } from "./ui/command";
-import {
-  TbCalendarTime,
-  TbHome,
-  TbLock,
-  TbMail,
-  TbMessage,
-  TbNotebook,
-  TbUser,
-} from "react-icons/tb";
 import Link from "next/link";
 import { RoutesMap } from "@/lib/enums";
 import { useRouter } from "next/navigation";
 import { Skeleton } from "./ui/skeleton";
-
-type SearchCommandDialogProps = React.ComponentProps<"div">;
+import { Icons } from "./Icons";
 
 function useCtrlKeyKBind(callback: () => void) {
   useEffect(() => {
@@ -47,7 +37,7 @@ function useCtrlKeyKBind(callback: () => void) {
 export function SearchCommandDialog({
   className,
   ...props
-}: SearchCommandDialogProps) {
+}: React.ComponentProps<"div">) {
   const router = useRouter();
   const isApple = useIsApple();
   const [isOpen, setIsOpen] = useState(false);
@@ -83,25 +73,25 @@ export function SearchCommandDialog({
           <CommandGroup heading="Страницы">
             <CommandItem asChild>
               <Link href={RoutesMap.Home}>
-                <TbHome className="mr-2 h-4 w-4" />
+                <Icons.Home className="mr-2" />
                 <span>Главная</span>
               </Link>
             </CommandItem>
             <CommandItem asChild>
               <Link href={RoutesMap.Course}>
-                <TbNotebook className="mr-2 h-4 w-4" />
+                <Icons.Notebook className="mr-2" />
                 <span>Курсы</span>
               </Link>
             </CommandItem>
             <CommandItem asChild>
               <Link href={RoutesMap.Schedule}>
-                <TbCalendarTime className="mr-2 h-4 w-4" />
+                <Icons.CalendarTime className="mr-2" />
                 <span>Расписание</span>
               </Link>
             </CommandItem>
             <CommandItem asChild>
               <Link href={RoutesMap.Chat}>
-                <TbMessage className="mr-2 h-4 w-4" />
+                <Icons.Message className="mr-2" />
                 <span>Сообщения</span>
               </Link>
             </CommandItem>
@@ -133,19 +123,19 @@ export function SearchCommandDialog({
           <CommandGroup heading="Настройки">
             <CommandItem asChild>
               <Link href={RoutesMap.Settings + "?tab=Profile"}>
-                <TbUser className="mr-2 h-4 w-4" />
+                <Icons.User className="mr-2" />
                 <span>Профиль</span>
               </Link>
             </CommandItem>
             <CommandItem asChild>
               <Link href={RoutesMap.Settings + "?tab=Password"}>
-                <TbLock className="mr-2 h-4 w-4" />
+                <Icons.Lock className="mr-2" />
                 <span>Пароль</span>
               </Link>
             </CommandItem>
             <CommandItem asChild>
               <Link href={RoutesMap.Settings + "?tab=Email"}>
-                <TbMail className="mr-2 h-4 w-4" />
+                <Icons.Mail className="mr-2" />
                 <span>Email</span>
               </Link>
             </CommandItem>

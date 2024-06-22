@@ -17,7 +17,7 @@ const buttonVariants = cva(
         default:
           "[--ripple-clr:theme('colors.primary.foreground')] bg-primary text-primary-foreground hover:bg-primary/90",
         destructive:
-          "[--ripple-clr:theme('colors.background')] bg-destructive text-destructive-foreground hover:bg-destructive/90",
+          "[--ripple-clr:theme('colors.background')] bg-destructive focus-visible:ring-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
           "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
         "outline-destructive":

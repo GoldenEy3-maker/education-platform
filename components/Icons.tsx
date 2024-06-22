@@ -1,4 +1,25 @@
-import { TbArrowLeft, TbArrowRight, TbMoon, TbSun } from "react-icons/tb";
+import { BiLogOutCircle } from "react-icons/bi";
+import {
+  TbArrowLeft,
+  TbArrowRight,
+  TbBell,
+  TbBellZFilled,
+  TbCalendarTime,
+  TbChecks,
+  TbHelp,
+  TbHome,
+  TbLock,
+  TbMail,
+  TbMenu2,
+  TbMessage,
+  TbMoon,
+  TbNotebook,
+  TbSettings,
+  TbSettings2,
+  TbSun,
+  TbUser,
+  TbX,
+} from "react-icons/tb";
 
 export const Icons = {
   Logo: (props: React.ComponentProps<"svg">) => (
@@ -32,4 +53,20 @@ export const Icons = {
   Sub: TbSun,
   ArrowLeft: TbArrowLeft,
   ArrowRight: TbArrowRight,
+  LogOutCircle: BiLogOutCircle,
+  CalendarTime: TbCalendarTime,
+  HelpCircle: TbHelp,
+  Home: TbHome,
+  Message: TbMessage,
+  Notebook: TbNotebook,
+  Settings: TbSettings,
+  Settings2: TbSettings2,
+  User: TbUser,
+  Lock: TbLock,
+  Mail: TbMail,
+  Menu: TbMenu2,
+  X: TbX,
+  BellZFilled: TbBellZFilled,
+  Bell: TbBell,
+  Checks: TbChecks,
 };

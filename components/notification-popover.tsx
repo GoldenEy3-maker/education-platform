@@ -2,7 +2,6 @@
 
 import dayjs from "@/lib/extended-dayjs";
 import Link from "next/link";
-import { TbBell, TbBellZFilled, TbChecks, TbSettings2 } from "react-icons/tb";
 import { type ValueOf } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { Avatar } from "./avatar";
@@ -13,6 +12,7 @@ import { Skeleton } from "./ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { useSession } from "./session-provider";
 import { SessionUser } from "@/server/actions/auth";
+import { Icons } from "./Icons";
 
 const TabsMap = {
   Inbox: "inbox",
@@ -90,8 +90,8 @@ function NotificationItemSkeleton() {
 function NotificationsEmpty() {
   return (
     <div className="flex flex-col items-center justify-center py-4">
-      <TbBellZFilled className="text-7xl text-muted-foreground" />
-      <p className="mt-2 text-center [text-wrap:balance]">
+      <Icons.BellZFilled className="text-7xl text-muted-foreground" />
+      <p className="mt-2 text-balance text-center">
         Мы дадим знать, когда у нас будет что-то новое для вас.
       </p>
     </div>
@@ -112,7 +112,7 @@ export function NotificationPopover() {
           size="icon"
           className="data-[state=open]:bg-accent"
         >
-          <TbBell className="text-xl" />
+          <Icons.Bell className="text-xl" />
           <Badge className="absolute right-0 top-0 flex h-6 min-w-6 items-center justify-center rounded-full bg-primary px-1 py-0 text-xs">
             10
           </Badge>
@@ -128,7 +128,7 @@ export function NotificationPopover() {
             disabled={isLoading}
           >
             <span>Прочитать все</span>
-            <TbChecks className="text-base" />
+            <Icons.Checks className="text-base" />
           </Button>
         </header>
         {session?.user ? (
@@ -177,7 +177,7 @@ export function NotificationPopover() {
                 disabled={isLoading}
                 className="rounded-full"
               >
-                <TbSettings2 className="text-lg" />
+                <Icons.Settings2 className="text-lg" />
               </Button>
             </div>
             <TabsContent

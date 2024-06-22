@@ -37,7 +37,10 @@ export const protectedProcedure = createServerActionProcedure().handler(
         },
       });
 
-      if (!session) throw new Error("Неавторизованный доступ!");
+      if (!session) {
+        cookies().delete(CookiesMap.SessionToken);
+        throw new Error("Неавторизованный доступ!");
+      }
 
       return {
         session: {

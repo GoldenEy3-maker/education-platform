@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { AvatarFallback, AvatarImage, Avatar as AvatarRoot } from "./ui/avatar";
+import Image from "next/image";
 
 type AvatarProps = {
   fallback?: string;
@@ -20,7 +21,10 @@ export function Avatar({ fallback, className, src, isOnline }: AvatarProps) {
       )}
     >
       <AvatarRoot className="h-full w-full">
-        <AvatarImage src={src ?? undefined} />
+        {src ? (
+          <Image src={src} alt="Аватар пользователя" fill sizes="10vw" />
+        ) : null}
+        {/* <AvatarImage src={src ?? undefined} /> */}
         <AvatarFallback>{fallback}</AvatarFallback>
       </AvatarRoot>
     </div>

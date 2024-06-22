@@ -4,7 +4,6 @@ import { useTheme } from "next-themes";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { BiLogOutCircle } from "react-icons/bi";
 import { RoutesMap, RoleContentMap } from "@/lib/enums";
 import { getFirstLettersUserCredentials } from "@/lib/utils";
 import { Avatar } from "./avatar";
@@ -15,18 +14,8 @@ import { Label } from "./ui/label";
 import { Separator } from "./ui/separator";
 import { Skeleton } from "./ui/skeleton";
 import { Switch } from "./ui/switch";
-import {
-  TbCalendarTime,
-  TbHelp,
-  TbHome,
-  TbMenu2,
-  TbMessage,
-  TbMoon,
-  TbNotebook,
-  TbSettings,
-  TbX,
-} from "react-icons/tb";
 import { useSession } from "./session-provider";
+import { Icons } from "./Icons";
 
 export function SidebarDrawer() {
   const [isOpen, setIsOpen] = useState(false);
@@ -42,7 +31,7 @@ export function SidebarDrawer() {
     <Drawer direction="left" open={isOpen} onOpenChange={setIsOpen}>
       <DrawerTrigger asChild>
         <Button size="icon" variant="ghost" type="button" className="md:hidden">
-          <TbMenu2 className="text-xl" />
+          <Icons.Menu className="text-xl" />
         </Button>
       </DrawerTrigger>
       <DrawerContent
@@ -83,49 +72,51 @@ export function SidebarDrawer() {
           className="absolute right-2 top-2"
           onClick={() => setIsOpen(false)}
         >
-          <TbX className="text-lg" />
+          <Icons.X className="text-lg" />
         </Button>
         <Separator className="my-4" />
         <nav className="flex flex-col gap-2 overflow-auto">
           <Button
             asChild
-            className="w-full shrink-0 justify-normal gap-2"
+            className="w-full shrink-0 justify-normal text-left"
             variant="ghost"
           >
             <Link href={RoutesMap.Home}>
-              <TbHome className="text-xl" /> <span>Главная</span>
+              <Icons.Home className="mr-2 text-xl" /> <span>Главная</span>
             </Link>
           </Button>
           <Button
             asChild
-            className="w-full shrink-0 justify-normal gap-2"
+            className="w-full shrink-0 justify-normal text-left"
             variant="ghost"
           >
             <Link href={RoutesMap.Courses}>
-              <TbNotebook className="text-xl" /> <span>Курсы</span>
+              <Icons.Notebook className="mr-2 text-xl" /> <span>Курсы</span>
             </Link>
           </Button>
           <Button
             asChild
-            className="w-full shrink-0 justify-normal gap-2"
+            className="w-full shrink-0 justify-normal text-left"
             variant="ghost"
           >
             <Link href={RoutesMap.Schedule}>
-              <TbCalendarTime className="text-xl" /> <span>Расписание</span>
+              <Icons.CalendarTime className="mr-2 text-xl" />{" "}
+              <span>Расписание</span>
             </Link>
           </Button>
           <Button
             asChild
-            className="w-full shrink-0 justify-normal gap-2"
+            className="w-full shrink-0 justify-normal text-left"
             variant="ghost"
           >
             <Link href={RoutesMap.HomeChat}>
-              <TbMessage className="text-xl" /> <span>Сообщения</span>
+              <Icons.Message className="mr-2 text-xl" /> <span>Сообщения</span>
             </Link>
           </Button>
           <div className="relative mt-auto rounded-lg p-4">
-            <div className="mb-2 flex items-center gap-2">
-              <TbHelp className="text-xl" /> <span>Нужна помощь?</span>
+            <div className="mb-2 flex items-center text-left">
+              <Icons.HelpCircle className="mr-2 text-xl" />{" "}
+              <span>Нужна помощь?</span>
             </div>
             <p className="text-sm">
               <Link href={"#"} className="text-primary">
@@ -147,15 +138,15 @@ export function SidebarDrawer() {
             <Button
               asChild
               variant="ghost"
-              className="w-full justify-between gap-2"
+              className="w-full justify-between text-left"
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             >
               <div>
                 <Label
                   htmlFor="dark-theme"
-                  className="pointer-events-none flex items-center gap-2"
+                  className="pointer-events-none flex items-center"
                 >
-                  <TbMoon className="text-xl" />
+                  <Icons.Moon className="mr-2 text-xl" />
                   <span>Темная тема</span>
                 </Label>
                 <Switch id="dark-theme" checked={theme === "dark"} />
@@ -163,19 +154,21 @@ export function SidebarDrawer() {
             </Button>
             <Button
               asChild
-              className="w-full shrink-0 justify-normal gap-2"
+              className="w-full shrink-0 justify-normal text-left"
               variant="ghost"
             >
               <Link href={RoutesMap.Settings}>
-                <TbSettings className="text-xl" /> <span>Настройки</span>
+                <Icons.Settings className="mr-2 text-xl" />{" "}
+                <span>Настройки</span>
               </Link>
             </Button>
             <SignOutAlertDrawer>
               <Button
-                className="w-full shrink-0 justify-normal gap-2"
+                className="w-full shrink-0 justify-normal text-left"
                 variant="ghost"
               >
-                <BiLogOutCircle className="text-xl" /> <span>Выход</span>
+                <Icons.LogOutCircle className="mr-2 text-xl" />{" "}
+                <span>Выход</span>
               </Button>
             </SignOutAlertDrawer>
           </div>
