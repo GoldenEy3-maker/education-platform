@@ -14,14 +14,12 @@ import { Label } from "./ui/label";
 import { Separator } from "./ui/separator";
 import { Skeleton } from "./ui/skeleton";
 import { Switch } from "./ui/switch";
-import { useSession } from "./session-provider";
 import { Icons } from "./Icons";
 
 export function SidebarDrawer() {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   const { theme, setTheme } = useTheme();
-  const { session } = useSession();
 
   useEffect(() => {
     if (router) setIsOpen(false);
@@ -39,7 +37,7 @@ export function SidebarDrawer() {
         isNotchDisabled
       >
         <header className="grid grid-cols-[auto_1fr] grid-rows-[auto_auto] items-center gap-x-4 pr-6">
-          {session?.user ? (
+          {/* {session?.user ? (
             <>
               <Avatar
                 fallback={getFirstLettersUserCredentials(
@@ -63,7 +61,7 @@ export function SidebarDrawer() {
               <Skeleton className="h-4 w-44" />
               <Skeleton className="h-4 w-28" />
             </>
-          )}
+          )} */}
         </header>
         <Button
           type="button"

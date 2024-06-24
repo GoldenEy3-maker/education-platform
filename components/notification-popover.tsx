@@ -10,9 +10,9 @@ import { Button } from "./ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Skeleton } from "./ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
-import { useSession } from "./session-provider";
 import { SessionUser } from "@/server/actions/auth";
 import { Icons } from "./Icons";
+import { useSession } from "./session-provider";
 
 const TabsMap = {
   Inbox: "inbox",
@@ -100,7 +100,6 @@ function NotificationsEmpty() {
 
 export function NotificationPopover() {
   const { session } = useSession();
-
   const isLoading = false;
 
   return (

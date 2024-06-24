@@ -3,8 +3,8 @@ import { cookies } from "next/headers";
 import { CookiesMap } from "@/lib/enums";
 import { db } from "../db";
 
-export const protectedProcedure = createServerActionProcedure().handler(
-  async () => {
+export const protectedProcedure = createServerActionProcedure()
+  .handler(async () => {
     try {
       const token = cookies().get(CookiesMap.SessionToken);
 
@@ -55,5 +55,5 @@ export const protectedProcedure = createServerActionProcedure().handler(
 
       throw new Error("Что-то пошло не так!");
     }
-  },
-);
+  })
+  .createServerAction();

@@ -1,11 +1,10 @@
 "use client";
 
-import { getQueryClient } from "@/lib/get-query-client";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ThemeProvider } from "./theme-provider";
 import { Toaster } from "./ui/sonner";
-import { SessionProvider } from "./session-provider";
+import { getQueryClient } from "@/lib/get-query-client";
 
 export default function Providers({ children }: React.PropsWithChildren) {
   const queryClient = getQueryClient();
@@ -17,7 +16,7 @@ export default function Providers({ children }: React.PropsWithChildren) {
         defaultTheme="light"
         disableTransitionOnChange
       >
-        <SessionProvider>{children}</SessionProvider>
+        {children}
         <Toaster richColors closeButton />
       </ThemeProvider>
       <ReactQueryDevtools />

@@ -22,7 +22,13 @@ export function Avatar({ fallback, className, src, isOnline }: AvatarProps) {
     >
       <AvatarRoot className="h-full w-full">
         {src ? (
-          <Image src={src} alt="Аватар пользователя" fill sizes="10vw" />
+          <Image
+            src={src}
+            alt="Аватар пользователя"
+            className="object-cover"
+            fill
+            sizes="10vw"
+          />
         ) : null}
         {/* <AvatarImage src={src ?? undefined} /> */}
         <AvatarFallback>{fallback}</AvatarFallback>

@@ -1,45 +1,22 @@
-import { RoleContentMap, RoutesMap } from "@/lib/enums";
+"use client";
+
+import { RoleContentMap } from "@/lib/enums";
 import { cn, getFirstLettersUserCredentials } from "@/lib/utils";
 import { Avatar } from "./avatar";
 import { NotificationPopover } from "./notification-popover";
 import { SearchCommandDialog } from "./search-command-dialog";
 import { SidebarDrawer } from "./sidebar-drawer";
 import { Skeleton } from "./ui/skeleton";
-import { auth } from "@/server/actions/auth";
-import { Suspense } from "react";
-
-async function UserProfile() {
-  const [session, error] = await auth();
-
-  if (error) return null;
-
-  return (
-    <>
-      <NotificationPopover />
-      <div className="grid grid-cols-[auto_1fr] grid-rows-[auto_auto] justify-normal px-2 py-1 text-left text-sm sm:gap-x-3">
-        <Avatar
-          className="row-span-2 h-10 w-10"
-          fallback={getFirstLettersUserCredentials(
-            session.user.surname,
-            session.user.name,
-          )}
-          src={session.user.image}
-        />
-        <p className="font-medium max-sm:hidden">
-          {session.user.surname} {session.user.name}
-        </p>
-        <span className="text-xs text-muted-foreground max-sm:hidden">
-          {RoleContentMap[session.user.role]}
-        </span>
-      </div>
-    </>
-  );
-}
+import { useSession } from "./session-provider";
 
 export function Header({
   className,
   ...props
 }: React.ComponentProps<"header">) {
+  const { session } = useSession();
+
+  console.log(session);
+
   return (
     <header
       className={cn(
@@ -51,17 +28,33 @@ export function Header({
       <div className="flex items-center gap-2">
         <SidebarDrawer />
         <SearchCommandDialog className="flex flex-grow max-xs:justify-end" />
-        <Suspense
-          fallback={
-            <div className="grid grid-cols-[auto_1fr] grid-rows-[auto_auto] items-center px-2 py-1 sm:gap-x-3">
-              <Skeleton className="row-span-2 h-10 w-10 rounded-full" />
-              <Skeleton className="h-3 w-32 rounded-lg max-sm:hidden" />
-              <Skeleton className="h-3 w-20 rounded-lg max-sm:hidden" />
+        {session?.user ? (
+          <>
+            <NotificationPopover />
+            <div className="grid grid-cols-[auto_1fr] grid-rows-[auto_auto] justify-normal px-2 py-1 text-left text-sm sm:gap-x-3">
+              <Avatar
+                className="row-span-2 h-10 w-10"
+                fallback={getFirstLettersUserCredentials(
+                  session.user.surname,
+                  session.user.name,
+                )}
+                src={session.user.image}
+              />
+              <p className="font-medium max-sm:hidden">
+                {session.user.surname} {session.user.name}
+              </p>
+              <span className="text-xs text-muted-foreground max-sm:hidden">
+                {RoleContentMap[session.user.role]}
+              </span>
             </div>
-          }
-        >
-          <UserProfile />
-        </Suspense>
+          </>
+        ) : (
+          <div className="grid grid-cols-[auto_1fr] grid-rows-[auto_auto] items-center px-2 py-1 sm:gap-x-3">
+            <Skeleton className="row-span-2 h-10 w-10 rounded-full" />
+            <Skeleton className="h-3 w-32 rounded-lg max-sm:hidden" />
+            <Skeleton className="h-3 w-20 rounded-lg max-sm:hidden" />
+          </div>
+        )}
       </div>
     </header>
   );

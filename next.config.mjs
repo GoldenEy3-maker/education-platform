@@ -12,6 +12,9 @@ const nextConfig = {
     locales: ["ru"],
     defaultLocale: "ru",
   },
+  experimental: {
+    missingSuspenseWithCSRBailout: false,
+  },
 };
 
 export default nextConfig;

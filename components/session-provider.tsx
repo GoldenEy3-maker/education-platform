@@ -1,9 +1,11 @@
 "use client";
 
 import { useServerActionQuery } from "@/hook/use-server-action";
+import { RoutesMap } from "@/lib/enums";
 import { auth } from "@/server/actions/auth";
 import { Prisma } from "@prisma/client";
-import { createContext, useContext } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { createContext, useContext, useEffect } from "react";
 
 type SessionContext = {
   session:
@@ -36,10 +38,19 @@ type SessionContext = {
 const SessionContext = createContext<SessionContext | null>(null);
 
 export function SessionProvider({ children }: React.PropsWithChildren) {
+  const pathname = usePathname();
+  const router = useRouter();
+
   const getSessionQuery = useServerActionQuery(auth, {
     input: undefined,
     queryKey: ["getSession"],
   });
+
+  useEffect(() => {
+    if (getSessionQuery.isError) {
+      router.push(`${RoutesMap.Login}?callbackUrl=${pathname}`);
+    }
+  }, [router, pathname, getSessionQuery.isError]);
 
   return (
     <SessionContext.Provider

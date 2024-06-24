@@ -5,7 +5,7 @@ import { z } from "zod";
 import bcrypt from "bcrypt";
 import { cookies } from "next/headers";
 import { CookiesMap, RoutesMap } from "@/lib/enums";
-import { createServerAction } from "zsa";
+import { createServerAction, instanceofZodTypeArray } from "zsa";
 import { redirect } from "next/navigation";
 import { protectedProcedure } from "./procedures";
 import { Prisma } from "@prisma/client";
@@ -93,21 +93,27 @@ export const signIn = createServerAction()
   });
 
 export const signOut = createServerAction().handler(async () => {
-  const token = cookies().get(CookiesMap.SessionToken);
+  try {
+    const token = cookies().get(CookiesMap.SessionToken);
 
-  if (!token) redirect(RoutesMap.Login);
+    if (!token) return true;
 
-  await db.session.delete({
-    where: {
-      sessionToken: token.value,
-    },
-  });
+    await db.session.delete({
+      where: {
+        sessionToken: token.value,
+      },
+    });
 
-  cookies().delete(CookiesMap.SessionToken);
+    cookies().delete(CookiesMap.SessionToken);
 
-  redirect(RoutesMap.Login);
+    return true;
+  } catch (error) {
+    if (error instanceof Error) {
+      throw error;
+    }
+
+    throw new Error("Что-то пошло не так!");
+  }
 });
 
-export const auth = protectedProcedure
-  .createServerAction()
-  .handler((opts) => opts.ctx.session);
+export const auth = protectedProcedure.handler((opts) => opts.ctx.session);

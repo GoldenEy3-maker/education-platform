@@ -27,14 +27,21 @@ import { useServerActionMutation } from "@/hook/use-server-action";
 import { signOut } from "@/server/actions/auth";
 import { toast } from "sonner";
 import { Separator } from "./ui/separator";
+import { usePathname, useRouter } from "next/navigation";
+import { RoutesMap } from "@/lib/enums";
 
 export function SignOutAlertDrawer({ children }: React.PropsWithChildren) {
+  const pathname = usePathname();
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const isDesktop = useMediaQuery("(min-width: 768px)");
   const textContent =
     "Это действие нельзя отменить. Вы потеряете полный доступ ко всем ресурсам портала. Вам придется заново авторизоваться, чтобы продолжить работу.";
 
   const singOutMutation = useServerActionMutation(signOut, {
+    onSuccess() {
+      router.push(`${RoutesMap.Login}?callbackUrl=${pathname}`);
+    },
     onError(error) {
       toast.error(error.message);
     },
